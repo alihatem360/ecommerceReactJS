@@ -23,7 +23,7 @@ const Slider = () => {
             alt="First slide"
           />
           <div className="">
-            <h3 className="slider-title">هناك خصم كبير</h3>
+            <h3 className="slider-title">هناك خصم كبيرر</h3>
             <p className="slider-text">خصم يصل ٥٠٪ عند شرائك</p>
           </div>
         </div>
