@@ -20,8 +20,12 @@
     "react-image-gallery": "^1.2.7",
     "react-paginate": "^8.1.0",
     "react-rating-stars-component": "^2.2.0",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.3",
+    "redux": "^4.2.0",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.2",
     "unop-react-dropdown": "^0.2.3",
     "web-vitals": "^1.1.2"
   },
