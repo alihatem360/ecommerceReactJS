@@ -4,7 +4,7 @@ import { Container, Row } from "react-bootstrap";
 import CategoryCard from "../Category/CategoryCard";
 import SubTitle from "../Utility/SubTitle";
 import { useDispatch, useSelector } from "react-redux";
-import getAllCategory from "../../redux/actions/categoryAction";
+import { getAllCategory } from "../../redux/actions/categoryAction";
 import { Spinner } from "react-bootstrap";
 const HomeCategory = () => {
   const colors = [
