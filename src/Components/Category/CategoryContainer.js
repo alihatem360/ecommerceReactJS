@@ -10,6 +10,7 @@ const CategoryContainer = ({ data, loading }) => {
     "#55CFDF",
     "#FF6262",
     "#F4DBA5",
+    "#F4DBA5",
   ];
 
   return (
