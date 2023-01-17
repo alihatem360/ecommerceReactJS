@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import avatar from "../../images/avatar.png";
 import add from "../../images/add.png";
 import Multiselect from "multiselect-react-dropdown";
+import MultiImageInput from "react-multiple-image-input";
 
 const AdminAddProducts = () => {
+  const [images, setImages] = useState({});
+
   const options = [
     { name: "التصنيف الاول", id: 1 },
     { name: "التصنيف الثاني", id: 2 },
@@ -43,7 +46,8 @@ const AdminAddProducts = () => {
           <select
             name="languages"
             id="lang"
-            className="select input-form-area mt-3 px-2 ">
+            className="select input-form-area mt-3 px-2 "
+          >
             <option value="val">التصنيف الرئيسي</option>
             <option value="val">التصنيف الاول</option>
             <option value="val2">التصنيف الثاني</option>
@@ -63,7 +67,8 @@ const AdminAddProducts = () => {
           <select
             name="brand"
             id="brand"
-            className="select input-form-area mt-3 px-2 ">
+            className="select input-form-area mt-3 px-2 "
+          >
             <option value="val">الماركة</option>
             <option value="val2">التصنيف الماركة الاولي</option>
             <option value="val2">التصنيف الماركة الثانيه</option>
@@ -73,13 +78,16 @@ const AdminAddProducts = () => {
           <div className="mt-1 d-flex">
             <div
               className="color ms-2 border  mt-1"
-              style={{ backgroundColor: "#E52C2C" }}></div>
+              style={{ backgroundColor: "#E52C2C" }}
+            ></div>
             <div
               className="color ms-2 border mt-1 "
-              style={{ backgroundColor: "white" }}></div>
+              style={{ backgroundColor: "white" }}
+            ></div>
             <div
               className="color ms-2 border  mt-1"
-              style={{ backgroundColor: "black" }}></div>
+              style={{ backgroundColor: "black" }}
+            ></div>
             <img src={add} alt="" width="30px" height="35px" className="" />
           </div>
         </Col>
