@@ -2,25 +2,39 @@ import React, { useState, useRef } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import BrandCard from "./BrandCard";
 import SubTitle from "../Utility/SubTitle.js";
-import brand1 from "../../images/brand1.png";
-import brand2 from "../../images/brand2.png";
-import brand3 from "../../images/brand3.png";
+import CategoryCard from "../Category/CategoryCard";
+
+import { Spinner } from "react-bootstrap";
+import BrandHomeHook from "../../customHook/brand/home-brand-hook.js";
 const BrandFeatured = ({ title, btntitle, pathText }) => {
   if (pathText === "") {
     pathText = "404";
   }
+
+  const [brands, loading] = BrandHomeHook();
+  console.log(brands, "brands", loading, "loading");
   return (
     <div className="my-3">
       <Container>
         <SubTitle title="اشهر الماركات" btntitle="المزيد" pathText={pathText} />
-
         <Row className="my-1 justify-content-between">
-          <BrandCard img={brand1} />
-          <BrandCard img={brand2} />
-          <BrandCard img={brand3} />
-          <BrandCard img={brand2} />
-          <BrandCard img={brand1} />
-          <BrandCard img={brand3} />
+          {loading === false ? (
+            brands.data ? (
+              brands.data.map((item, index) => (
+                <CategoryCard key={index} img={item.image} />
+              ))
+            ) : (
+              <h1>
+                <Col className="text-center">لا يوجد ماركات</Col>
+              </h1>
+            )
+          ) : (
+            <>
+              <Col className="text-center">
+                <Spinner animation="border" variant="primary" />
+              </Col>
+            </>
+          )}
         </Row>
       </Container>
     </div>

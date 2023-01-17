@@ -5,6 +5,7 @@ import {
 } from "../types/categorytypes";
 import useGetData from "../../hook/useGetData";
 import { useInsertDataWithImage } from "../../hook/useInsertData";
+
 export const getAllCategory = (limit) => async (dispatch) => {
   try {
     const response = await useGetData(`/api/v1/categories?limit=${limit}`);
