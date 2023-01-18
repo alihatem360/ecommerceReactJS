@@ -6,16 +6,20 @@ import Multiselect from "multiselect-react-dropdown";
 import MultiImageInput from "react-multiple-image-input";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllCategory } from "../../redux/actions/categoryAction";
+import { getAllBrands } from "../../redux/actions/brandAction";
+import { CompactPicker } from "react-color";
+import { getSubcategory } from "../../redux/actions/subCategoryAction";
 
+//
 const AdminAddProducts = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllCategory());
+    dispatch(getAllBrands());
   }, []);
+
   const category = useSelector((state) => state.categoryReducer.categories);
-  if (category) {
-    console.log(category.data, "category data");
-  }
+  const brands = useSelector((state) => state.brandReducer.brands);
   const subcategories = useSelector(
     (state) => state.subcategoryReducer.subcategory
   );
@@ -28,20 +32,55 @@ const AdminAddProducts = () => {
   const [priceAfterDiscount, setPriceAfterDiscount] =
     useState("السعر بعد الخصم");
   const [quantity, setQuantity] = useState(" الكميه المتاحه");
-  const [catID, setCatID] = useState("");
+  const [catID, setCatID] = useState(0);
   //  عرض العناصر الفرعيه اللي اليوزر اختارها
-  const [subCatID, setSubCatID] = useState("");
+  const [subCatIDs, setSubCatIDs] = useState("");
   const [brandID, setBrandID] = useState([]);
   // خزن العناصر الفرعيه اللي اليوزر اختارها
   const [selectedSubCat, setSelectedSubCat] = useState([]);
+  // اظهار و اخفاء البلته اللي بيختار منها اللون
+  const [showColor, setShowColor] = useState(false);
+  // خزن الالوان اللي اليوزر اختارها
+  const [colors, setColors] = useState([]);
+  const [options, setOptions] = useState([]);
 
-  const options = [
-    { name: "التصنيف الاول", id: 1 },
-    { name: "التصنيف الثاني", id: 2 },
-  ];
-  const onSelect = (selectedList, selectedItem) => {};
+  // حفظ التصنيف الرئيسي اللي اليوزر اختاره
+  const handelSelectCat = async (e) => {
+    if (e.target.value !== 0) {
+      await dispatch(getSubcategory(e.target.value));
+    }
+    setCatID(e.target.value);
+  };
 
-  const onRemove = (selectedList, removedItem) => {};
+  //  عرض العناصر الفرعيه علي اساس التصنيف الرئيسي اللي اليوزر اختارهو تخزينها في ال state
+  useEffect(() => {
+    if (catID !== 0) {
+      console.log(subcategories, "subcategories from useEffect");
+      setOptions(subcategories.data.data);
+    }
+  }, [catID]);
+
+  // حفظ البراند اللي اليوزر اختاره
+  const handelSelectBrand = (e) => {
+    setBrandID(e.target.value);
+    console.log(e.target.value, "brand id");
+  };
+
+  const handleOnChangeColor = (color) => {
+    console.log(color.hex);
+    setColors([...colors, color.hex]);
+  };
+
+  //
+  const onSelect = (selectedList) => {
+    console.log(selectedList, "selectedList");
+    setSelectedSubCat(selectedList);
+  };
+
+  const onRemove = (selectedList) => {
+    console.log(selectedList, "selectedList");
+    setSelectedSubCat(selectedList);
+  };
   return (
     <div>
       <Row className="justify-content-start ">
@@ -100,6 +139,7 @@ const AdminAddProducts = () => {
             name="category"
             id="lang"
             className="select input-form-area mt-3 px-2 "
+            onChange={(e) => handelSelectCat(e)}
           >
             <option value="0">التصنيف الرئيسي</option>
             {category.data &&
@@ -125,27 +165,46 @@ const AdminAddProducts = () => {
             name="brand"
             id="brand"
             className="select input-form-area mt-3 px-2 "
+            onChange={handelSelectBrand}
           >
-            <option value="val">الماركة</option>
-            <option value="val2">التصنيف الماركة الاولي</option>
-            <option value="val2">التصنيف الماركة الثانيه</option>
-            <option value="val2">التصنيف الرابع</option>
+            <option value="0">اختر العلامه التجاريه للمنتج</option>
+            {brands.data &&
+              brands.data.map((brand) => {
+                return (
+                  <option value={brand._id} key={brand._id}>
+                    {brand.name}
+                  </option>
+                );
+              })}
           </select>
           <div className="text-form mt-3 "> الالوان المتاحه للمنتج</div>
           <div className="mt-1 d-flex">
-            <div
-              className="color ms-2 border  mt-1"
-              style={{ backgroundColor: "#E52C2C" }}
-            ></div>
-            <div
-              className="color ms-2 border mt-1 "
-              style={{ backgroundColor: "white" }}
-            ></div>
-            <div
-              className="color ms-2 border  mt-1"
-              style={{ backgroundColor: "black" }}
-            ></div>
-            <img src={add} alt="" width="30px" height="35px" className="" />
+            {colors.length >= 1 &&
+              colors.map((color, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="color ms-2 border  mt-1"
+                    style={{ backgroundColor: color }}
+                    onClick={() => setColors(colors.filter((c) => c !== color))}
+                  ></div>
+                );
+              })}
+
+            <img
+              src={add}
+              alt=""
+              width="30px"
+              height="35px"
+              className=""
+              onClick={() => setShowColor(!showColor)}
+              style={{ cursor: "pointer" }}
+            />
+            {showColor && (
+              <CompactPicker
+                onChangeComplete={(color) => handleOnChangeColor(color)}
+              />
+            )}
           </div>
         </Col>
       </Row>

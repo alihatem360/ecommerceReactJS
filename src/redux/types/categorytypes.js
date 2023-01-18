@@ -7,5 +7,7 @@ export const GETT_ALL_BRAND = "GETT_ALL_BRAND";
 export const GEARTE_BRAND = "GEARTE_BRAND";
 
 //  subcategory types
-
 export const CREATE_SUBCATEGORY = "CREATE_SUBCATEGORY";
+
+//  get subcategory types related to category
+export const GET_SUBCATEGORY = "GET_SUBCATEGORY";
