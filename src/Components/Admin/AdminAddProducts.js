@@ -4,9 +4,36 @@ import avatar from "../../images/avatar.png";
 import add from "../../images/add.png";
 import Multiselect from "multiselect-react-dropdown";
 import MultiImageInput from "react-multiple-image-input";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllCategory } from "../../redux/actions/categoryAction";
 
 const AdminAddProducts = () => {
-  const [images, setImages] = useState({});
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllCategory());
+  }, []);
+  const category = useSelector((state) => state.categoryReducer.categories);
+  if (category) {
+    console.log(category.data, "category data");
+  }
+  const subcategories = useSelector(
+    (state) => state.subcategoryReducer.subcategory
+  );
+  // ال array اللي هتحط فيها الصور
+  const [images, setImages] = useState([]);
+  const [producName, setProducName] = useState("");
+  const [description, setDescription] = useState("");
+  const [priceBeforeDiscount, setPriceBeforeDiscount] =
+    useState("السعر قبل الخصم");
+  const [priceAfterDiscount, setPriceAfterDiscount] =
+    useState("السعر بعد الخصم");
+  const [quantity, setQuantity] = useState(" الكميه المتاحه");
+  const [catID, setCatID] = useState("");
+  //  عرض العناصر الفرعيه اللي اليوزر اختارها
+  const [subCatID, setSubCatID] = useState("");
+  const [brandID, setBrandID] = useState([]);
+  // خزن العناصر الفرعيه اللي اليوزر اختارها
+  const [selectedSubCat, setSelectedSubCat] = useState([]);
 
   const options = [
     { name: "التصنيف الاول", id: 1 },
@@ -21,38 +48,68 @@ const AdminAddProducts = () => {
         <div className="admin-content-text pb-4"> اضافه منتج جديد</div>
         <Col sm="8">
           <div className="text-form pb-2"> صور للمنتج</div>
-          <img src={avatar} alt="" height="100px" width="120px" />
+
+          {/* 
+              ال component اللي هتحط فيها الصور
+           */}
+          <MultiImageInput
+            images={images}
+            setImages={setImages}
+            theme={"light"}
+            allowCrop={false}
+            max={4}
+          />
           <input
             type="text"
             className="input-form d-block mt-3 px-3"
             placeholder="اسم المنتج"
+            value={producName}
+            onChange={(e) => setProducName(e.target.value)}
           />
           <textarea
             className="input-form-area p-2 mt-3"
             rows="4"
             cols="50"
             placeholder="وصف المنتج"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           />
           <input
             type="number"
             className="input-form d-block mt-3 px-3"
             placeholder="السعر قبل الخصم"
+            value={priceBeforeDiscount}
+            onChange={(e) => setPriceBeforeDiscount(e.target.value)}
           />
           <input
             type="number"
             className="input-form d-block mt-3 px-3"
-            placeholder="سعر المنتج"
+            placeholder="سعر المنتج بعد الخصم"
+            value={priceAfterDiscount}
+            onChange={(e) => setPriceAfterDiscount(e.target.value)}
+          />
+
+          <input
+            type="number"
+            className="input-form d-block mt-3 px-3"
+            placeholder="الكميه المتاحه"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
           />
           <select
-            name="languages"
+            name="category"
             id="lang"
             className="select input-form-area mt-3 px-2 "
           >
-            <option value="val">التصنيف الرئيسي</option>
-            <option value="val">التصنيف الاول</option>
-            <option value="val2">التصنيف الثاني</option>
-            <option value="val2">التصنيف الثالث</option>
-            <option value="val2">التصنيف الرابع</option>
+            <option value="0">التصنيف الرئيسي</option>
+            {category.data &&
+              category.data.map((cat) => {
+                return (
+                  <option value={cat._id} key={cat._id}>
+                    {cat.name}
+                  </option>
+                );
+              })}
           </select>
 
           <Multiselect
