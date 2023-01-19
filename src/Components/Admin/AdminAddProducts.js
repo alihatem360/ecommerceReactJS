@@ -26,9 +26,6 @@ const AdminAddProducts = () => {
     (state) => state.subcategoryReducer.subcategory
   );
 
-  // const product = useSelector((state) => state.productReducer.product);
-  // console.log(product.status, "product from redux");
-
   // ال array اللي هتحط فيها الصور
   const [images, setImages] = useState([]);
   const [producName, setProducName] = useState("");
@@ -41,7 +38,7 @@ const AdminAddProducts = () => {
   const [catID, setCatID] = useState(0);
   //  عرض العناصر الفرعيه اللي اليوزر اختارها
   const [subCatIDs, setSubCatIDs] = useState("");
-  const [brandID, setBrandID] = useState([]);
+  const [brandID, setBrandID] = useState("");
   // خزن العناصر الفرعيه اللي اليوزر اختارها
   const [selectedSubCat, setSelectedSubCat] = useState([]);
   // اظهار و اخفاء البلته اللي بيختار منها اللون
@@ -61,7 +58,7 @@ const AdminAddProducts = () => {
   //  عرض العناصر الفرعيه علي اساس التصنيف الرئيسي اللي اليوزر اختارهو تخزينها في ال state
   useEffect(() => {
     if (catID !== 0) {
-      console.log(subcategories, "subcategories from useEffect");
+      // console.log(subcategories, "subcategories from useEffect");
       setOptions(subcategories.data.data);
     }
   }, [catID]);
@@ -69,11 +66,11 @@ const AdminAddProducts = () => {
   // حفظ البراند اللي اليوزر اختاره
   const handelSelectBrand = (e) => {
     setBrandID(e.target.value);
-    console.log(e.target.value, "brand id");
+    // console.log(e.target.value, "brand id");
   };
 
   const handleOnChangeColor = (color) => {
-    console.log(color.hex);
+    // console.log(color.hex);
     setColors([...colors, color.hex]);
   };
 
@@ -145,6 +142,11 @@ const AdminAddProducts = () => {
     // console.log("تم اضافه المنتج بنجاح");
   };
 
+  const productStatus = useSelector(
+    (state) => state.productReducer.product.status
+  );
+  // console.log(productStatus, "product from redux");
+
   useEffect(() => {
     if (!loading) {
       setProducName("");
@@ -155,7 +157,7 @@ const AdminAddProducts = () => {
       setImages([]);
       setCatID(0);
       setSubCatIDs("");
-      setBrandID([]);
+      setBrandID(0);
       setSelectedSubCat([]);
       setShowColor(false);
       setColors([]);
@@ -163,7 +165,10 @@ const AdminAddProducts = () => {
       setTimeout(() => {
         setLoading(true);
       }, 1000);
-      console.log("تم اضافه المنتج بنجاح");
+
+      if (productStatus === 201) {
+        console.log("تم اضافه المنتج بنجاح");
+      }
     }
   }, [loading]);
   return (
