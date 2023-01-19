@@ -11,3 +11,7 @@ export const CREATE_SUBCATEGORY = "CREATE_SUBCATEGORY";
 
 //  get subcategory types related to category
 export const GET_SUBCATEGORY = "GET_SUBCATEGORY";
+
+//  product types
+
+export const GEARTE_PRODUCT = "GEARTE_PRODUCT";

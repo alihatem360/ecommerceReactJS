@@ -24,7 +24,6 @@ const SubCategoryHook = () => {
 
   // when user select category from select option
   const handelChange = (e) => {
-    console.log(e.target.value);
     setId(e.target.value);
   };
 

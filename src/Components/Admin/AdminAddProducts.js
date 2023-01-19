@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
-import avatar from "../../images/avatar.png";
 import add from "../../images/add.png";
 import Multiselect from "multiselect-react-dropdown";
 import MultiImageInput from "react-multiple-image-input";
@@ -9,7 +8,10 @@ import { getAllCategory } from "../../redux/actions/categoryAction";
 import { getAllBrands } from "../../redux/actions/brandAction";
 import { CompactPicker } from "react-color";
 import { getSubcategory } from "../../redux/actions/subCategoryAction";
+import { createProduct } from "../../redux/actions/producAction";
 
+// import productReducer from "../../redux/reducers/productReducer";
+import { Spinner } from "react-bootstrap";
 //
 const AdminAddProducts = () => {
   const dispatch = useDispatch();
@@ -23,6 +25,10 @@ const AdminAddProducts = () => {
   const subcategories = useSelector(
     (state) => state.subcategoryReducer.subcategory
   );
+
+  // const product = useSelector((state) => state.productReducer.product);
+  // console.log(product.status, "product from redux");
+
   // ال array اللي هتحط فيها الصور
   const [images, setImages] = useState([]);
   const [producName, setProducName] = useState("");
@@ -43,7 +49,7 @@ const AdminAddProducts = () => {
   // خزن الالوان اللي اليوزر اختارها
   const [colors, setColors] = useState([]);
   const [options, setOptions] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   // حفظ التصنيف الرئيسي اللي اليوزر اختاره
   const handelSelectCat = async (e) => {
     if (e.target.value !== 0) {
@@ -73,20 +79,99 @@ const AdminAddProducts = () => {
 
   //
   const onSelect = (selectedList) => {
-    console.log(selectedList, "selectedList");
     setSelectedSubCat(selectedList);
   };
 
   const onRemove = (selectedList) => {
-    console.log(selectedList, "selectedList");
     setSelectedSubCat(selectedList);
   };
+
+  //  function to convert base64 to file
+
+  function dataURLtoFile(dataurl, filename) {
+    var arr = dataurl.split(","),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+
+    return new File([u8arr], filename, { type: mime });
+  }
+
+  const handelSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    //  convert the first image to file ✔ "cover image"
+    const imageFile = dataURLtoFile(images[0], Math.random() + ".jpg");
+
+    //  convert the array of images to array of files ✔
+    // احول الصور اللي في ال array الى array من ال files
+    const arrayImages = Array.from(
+      Array(Object.keys(images).length).keys()
+    ).map((item, index) => {
+      return dataURLtoFile(images[index], Math.random() + ".jpg");
+    });
+
+    formData.append("title", producName);
+    formData.append("description", description);
+    formData.append("quantity", quantity);
+    formData.append("price", priceBeforeDiscount);
+    formData.append("imageCover", imageFile);
+    formData.append("category", catID);
+    formData.append("brand", brandID);
+
+    // send the array of colors
+    colors.map((color) => {
+      formData.append("availableColors", color);
+    });
+
+    // send the array of subcategories
+    selectedSubCat.map((subCat) => {
+      formData.append("subcategory", subCat._id);
+    });
+
+    // send the array of images
+    arrayImages.map((imageItem) => {
+      formData.append("images", imageItem);
+    });
+
+    setLoading(true);
+    await dispatch(createProduct(formData));
+    setLoading(false);
+    // console.log("تم اضافه المنتج بنجاح");
+  };
+
+  useEffect(() => {
+    if (!loading) {
+      setProducName("");
+      setDescription("");
+      setPriceBeforeDiscount("سعر المنتج قبل الخصم");
+      setPriceAfterDiscount("سعر المنتج بعد الخصم");
+      setQuantity("الكميه المتاحه");
+      setImages([]);
+      setCatID(0);
+      setSubCatIDs("");
+      setBrandID([]);
+      setSelectedSubCat([]);
+      setShowColor(false);
+      setColors([]);
+      setOptions([]);
+      setTimeout(() => {
+        setLoading(true);
+      }, 1000);
+      console.log("تم اضافه المنتج بنجاح");
+    }
+  }, [loading]);
   return (
     <div>
       <Row className="justify-content-start ">
         <div className="admin-content-text pb-4"> اضافه منتج جديد</div>
         <Col sm="8">
-          <div className="text-form pb-2"> صور للمنتج</div>
+          <div className="text-form pb-2">صور للمنتج</div>
 
           {/* 
               ال component اللي هتحط فيها الصور
@@ -210,7 +295,19 @@ const AdminAddProducts = () => {
       </Row>
       <Row>
         <Col sm="8" className="d-flex justify-content-end ">
-          <button className="btn-save d-inline mt-2 ">حفظ التعديلات</button>
+          {!loading && (
+            <>
+              <div className="text-center mt-3 m-2">
+                <Spinner animation="border" variant="primary" />
+              </div>
+            </>
+          )}
+          <button onClick={handelSubmit} className="btn-save d-inline mt-2 ">
+            حفظ التعديلات
+          </button>
+        </Col>
+        <Col sm="4">
+          <></>
         </Col>
       </Row>
     </div>
