@@ -12,7 +12,6 @@ const BrandFeatured = ({ title, btntitle, pathText }) => {
   }
 
   const [brands, loading] = BrandHomeHook();
-  console.log(brands, "brands", loading, "loading");
   return (
     <div className="my-3">
       <Container>

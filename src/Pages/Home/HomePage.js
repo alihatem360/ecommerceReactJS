@@ -5,19 +5,24 @@ import HomeCategory from "../../Components/Home/HomeCategory";
 import CardProductsContainer from "../../Components/Products/CardProductsContainer";
 import DiscountSection from "../../Components/Home/DiscountSection";
 import BrandFeatured from "../../Components/Brand/BrandFeatured";
-
+import AllProductHomeHook from "../../customHook/product/all-product-home-hook";
 const Home = () => {
+  const [mostSoldProducts, famProducts, allProducts] = AllProductHomeHook();
+  // console.log(mostSoldProducts, "mostSoldProducts in home page");
+  // console.log(allProducts, "products in home page");
   return (
     <div style={{ minHeight: "670px" }}>
       <Slider />
       <HomeCategory />
       <CardProductsContainer
+        products={mostSoldProducts}
         title="الاكثر مبيعا"
         btntitle="المزيد"
         pathText="/products"
       />
       <DiscountSection />
       <CardProductsContainer
+        products={famProducts}
         title="احدث الازياء"
         btntitle="المزيد"
         pathText="/products"
