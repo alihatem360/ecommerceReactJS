@@ -13,7 +13,6 @@ const BrandHomeHook = () => {
   const loading = useSelector((state) => state.brandReducer.isloading);
 
   if (brands) {
-    console.log(brands, "brands", loading, "loading");
   }
 
   return [brands, loading];

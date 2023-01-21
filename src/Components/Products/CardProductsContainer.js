@@ -4,15 +4,20 @@ import { Container, Col, Collapse } from "react-bootstrap";
 import ProductCard from "./ProductCard";
 import SubTitle from "../Utility/SubTitle.js";
 
-const CardProductsContainer = ({ title, btntitle, pathText }) => {
+const CardProductsContainer = ({ products, title, btntitle, pathText }) => {
   return (
     <Container>
-      <SubTitle title={title} btntitle={btntitle} pathText="/products" />
+      {products && (
+        <SubTitle title={title} btntitle={btntitle} pathText="/products" />
+      )}
       <Row className="justify-content-between ">
-        <ProductCard title="1" />
-        <ProductCard title="2" />
-        <ProductCard title="3" />
-        <ProductCard title="4" />
+        {products ? (
+          products.map((item, index) => (
+            <ProductCard key={index} product={item} />
+          ))
+        ) : (
+          <h1>لا يوجد منتجات</h1>
+        )}
       </Row>
     </Container>
   );
