@@ -23,6 +23,7 @@ import UserEditAddressPage from "./Pages/User/UserEditAddressPage";
 import UserProfilePage from "./Pages/User/UserProfilePage";
 import ChoosePayMethoudPage from "./Pages/Checkout/ChoosePayMethoudPage";
 import AdminOrderDetalisPage from "./Pages/Admin/AdminOrderDetalisPage";
+import AdminEditeProductPage from "./Pages/Admin/AdminEditeProductPage";
 function App() {
   return (
     <div className="font">
@@ -57,6 +58,10 @@ function App() {
           <Route
             path="/admin/addproducts"
             element={<AdminAddProductsPage />}
+          ></Route>
+          <Route
+            path="/admin/editproducts/:id"
+            element={<AdminEditeProductPage />}
           ></Route>
           <Route path="/user/allOrders" element={<UserAllOrdersPage />}></Route>
           <Route

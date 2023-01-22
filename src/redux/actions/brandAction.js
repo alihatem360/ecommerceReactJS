@@ -1,6 +1,7 @@
 import {
   GETT_ALL_BRAND,
   GEARTE_BRAND,
+  GETT_SPECIFIC_BRAND,
   GET_ERROR,
 } from "../types/categorytypes";
 import useGetData from "../../hook/useGetData";
@@ -44,6 +45,23 @@ export const createBrand = (formData) => async (dispatch) => {
     dispatch({
       type: GEARTE_BRAND,
       payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_ERROR,
+      payload: "Something went wrong" + error,
+    });
+  }
+};
+
+// ==================  get specific brand ==================
+
+export const getSpecificBrand = (id) => async (dispatch) => {
+  try {
+    const res = await useGetData(`/api/v1/brands/${id}`);
+    dispatch({
+      type: GETT_SPECIFIC_BRAND,
+      payload: res.data.data,
     });
   } catch (error) {
     dispatch({

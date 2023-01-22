@@ -8,8 +8,8 @@ import SideFilter from "../../Components/Utility/SideFilter";
 
 import SearchProductsHook from "../../customHook/product/search-product-hook";
 const ShopProducsPage = () => {
-  const [mostSoldProducts] = SearchProductsHook();
-  console.log(mostSoldProducts, "mostSoldProducts in home page");
+  const [mostSoldProducts, pagination, handelPaginate] = SearchProductsHook();
+
   return (
     <div style={{ minHeight: "670px" }}>
       <CategorysHeader />
@@ -32,7 +32,10 @@ const ShopProducsPage = () => {
               />
             </Col>
           </Row>
-          <PaginationCompontent />
+          <PaginationCompontent
+            paginationPageNumber={pagination.numberOfPages}
+            onPress={handelPaginate}
+          />
         </div>
       </Container>
     </div>

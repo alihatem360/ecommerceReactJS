@@ -2,9 +2,11 @@ import {
   GETT_ALL_BRAND,
   GEARTE_BRAND,
   GET_ERROR,
+  GETT_SPECIFIC_BRAND,
 } from "../types/categorytypes";
 const initial = {
   brands: [],
+  onBrand: [],
   isloading: true,
 };
 
@@ -19,6 +21,11 @@ const brandReducer = (state = initial, action) => {
     case GEARTE_BRAND:
       return {
         brands: action.payload,
+        isloading: false,
+      };
+    case GETT_SPECIFIC_BRAND:
+      return {
+        onBrand: action.payload,
         isloading: false,
       };
     case GET_ERROR:

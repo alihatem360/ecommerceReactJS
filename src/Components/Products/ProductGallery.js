@@ -1,5 +1,4 @@
 import React from "react";
-import mobile from "../../images/mobile.png";
 import mobile1 from "../../images/mobile1.png";
 import mobile2 from "../../images/mobile2.png";
 import "react-image-gallery/styles/css/image-gallery.css";
@@ -11,32 +10,7 @@ import ViewProductDetailsHook from "../../customHook/product/view-produc-details
 
 const ProductGallery = () => {
   const { id } = useParams();
-  const [item] = ViewProductDetailsHook(id);
-  console.log(item.data.images, "item from gallery");
-
-  let images = [];
-  if (item.data.images) {
-    images = item.data.images.map((image) => {
-      return {
-        original: image,
-      };
-    });
-  }
-
-  // const images = [
-  //   {
-  //     original: `${mobile}`,
-  //   },
-  //   {
-  //     original: `${mobile1}`,
-  //   },
-  //   {
-  //     original: `${mobile2}`,
-  //   },
-  //   {
-  //     original: `${mobile}`,
-  //   },
-  // ];
+  const [product, images, category] = ViewProductDetailsHook(id);
 
   return (
     <div
@@ -45,7 +19,6 @@ const ProductGallery = () => {
     >
       <ImageGallery
         items={images}
-        defaultImage={mobile}
         showThumbnails={false}
         isRTL={true}
         showPlayButton={false}

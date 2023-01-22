@@ -3,10 +3,14 @@ import {
   GET_ERROR,
   GET_ALL_PRODUCT,
   GET_PRODUCT_DETAILS,
+  GET_RELATED_PRODUCT,
+  DELETE_PRODUCT,
 } from "../types/categorytypes";
 import { useInsertDataWithImage } from "../../hook/useInsertData";
 import useGetData from "../../hook/useGetData";
+import useDeleteDtat from "../../hook/useDeleteDtat";
 
+// ==================  create product ==================
 export const createProduct = (formData) => async (dispatch) => {
   try {
     const respons = await useInsertDataWithImage("/api/v1/products", formData);
@@ -15,20 +19,64 @@ export const createProduct = (formData) => async (dispatch) => {
     dispatch({ type: GET_ERROR, payload: "Something went wrong" + error });
   }
 };
-
+// ==================  get all product ==================
 export const getAllProduct = () => async (dispatch) => {
   try {
-    const respons = await useGetData("/api/v1/products");
+    const respons = await useGetData(`/api/v1/products`);
     dispatch({ type: GET_ALL_PRODUCT, payload: respons });
   } catch (error) {
     dispatch({ type: GET_ERROR, payload: "Something went wrong" + error });
   }
 };
 
+// ==================  get all product with pagination ==================
+
+export const getAllProductPage = (page, limitPage) => async (dispatch) => {
+  try {
+    const respons = await useGetData(
+      `/api/v1/products?limit=${limitPage}&page=${page} `
+    );
+    dispatch({ type: GET_ALL_PRODUCT, payload: respons });
+  } catch (error) {
+    dispatch({ type: GET_ERROR, payload: "Something went wrong" + error });
+  }
+};
+
+// ==================  get Specific product ==================
 export const getProductDetails = (id) => async (dispatch) => {
   try {
     const respons = await useGetData(`/api/v1/products/${id}`);
-    dispatch({ type: GET_PRODUCT_DETAILS, payload: respons });
+    dispatch({ type: GET_PRODUCT_DETAILS, payload: respons.data });
+  } catch (error) {
+    dispatch({ type: GET_ERROR, payload: "Something went wrong" + error });
+  }
+};
+
+// ==================  get related product ==================
+
+export const getRelatedProduct = (id) => async (dispatch) => {
+  try {
+    const respons = await useGetData(`/api/v1/products?category[in][]=${id}`);
+    dispatch({
+      type: GET_RELATED_PRODUCT,
+      payload: respons.data.data,
+      loading: true,
+    });
+  } catch (error) {
+    dispatch({ type: GET_ERROR, payload: "Something went wrong" + error });
+  }
+};
+
+// ==================  delete product ==================
+
+export const deleteProduct = (id) => async (dispatch) => {
+  try {
+    const respons = await useDeleteDtat(`/api/v1/products/${id}`);
+    dispatch({
+      type: DELETE_PRODUCT,
+      payload: respons.data.data,
+      loading: true,
+    });
   } catch (error) {
     dispatch({ type: GET_ERROR, payload: "Something went wrong" + error });
   }

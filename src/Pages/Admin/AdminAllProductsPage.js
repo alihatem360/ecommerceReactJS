@@ -3,8 +3,11 @@ import { Col, Row } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import AdminSideBar from "../../Components/Admin/AdminSideBar";
 import AdminAllProducts from "../../Components/Admin/AdminAllProducts";
-import PaginationCompontent  from '../../Components/Utility/Pagination'
+import PaginationCompontent from "../../Components/Utility/Pagination";
+import AllProductAdminHook from "../../customHook/admin/all-product-admin-hook";
 const AdminAllProductsPage = () => {
+  const [products, pagination, handelPaginate] = AllProductAdminHook();
+
   return (
     <Container>
       <Row className="py-3">
@@ -12,8 +15,11 @@ const AdminAllProductsPage = () => {
           <AdminSideBar />
         </Col>
         <Col sm="9" xs="10" md="10">
-          <AdminAllProducts />
-          <PaginationCompontent/>
+          {products && <AdminAllProducts products={products} />}
+          <PaginationCompontent
+            paginationPageNumber={pagination.numberOfPages}
+            onPress={handelPaginate}
+          />
         </Col>
       </Row>
     </Container>
