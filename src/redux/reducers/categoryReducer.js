@@ -2,10 +2,12 @@ import {
   GET_ALL_CATEGORY,
   GET_ERROR,
   GEARTE_CATEGORY,
+  GET_SPECIFIC_CATEGORY,
 } from "../types/categorytypes";
 
 const initial = {
   categories: [],
+  onCategory: [],
   isLoding: true,
 };
 
@@ -20,6 +22,11 @@ const categoryReducer = (state = initial, action) => {
     case GEARTE_CATEGORY:
       return {
         categories: action.payload,
+        isLoding: false,
+      };
+    case GET_SPECIFIC_CATEGORY:
+      return {
+        onCategory: action.payload,
         isLoding: false,
       };
     case GET_ERROR:

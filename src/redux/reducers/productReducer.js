@@ -3,13 +3,17 @@ import {
   GET_ERROR,
   GET_ALL_PRODUCT,
   GET_PRODUCT_DETAILS,
+  GET_RELATED_PRODUCT,
+  DELETE_PRODUCT,
 } from "../types/categorytypes";
 
 const initial = {
   product: [],
-  loading: true,
   allProducs: [],
   oneProduct: [],
+  relatedProduct: [],
+  deleteedProduct: [],
+  loading: true,
 };
 
 const productReducer = (state = initial, action) => {
@@ -32,6 +36,19 @@ const productReducer = (state = initial, action) => {
         oneProduct: action.payload,
         loading: false,
       };
+    case GET_RELATED_PRODUCT:
+      return {
+        ...state,
+        relatedProduct: action.payload,
+        loading: false,
+      };
+    case DELETE_PRODUCT:
+      return {
+        ...state,
+        deleteedProduct: action.payload,
+        loading: false,
+      };
+
     case GET_ERROR:
       return {
         ...state,
