@@ -5,11 +5,12 @@ import {
   GET_PRODUCT_DETAILS,
   GET_RELATED_PRODUCT,
   DELETE_PRODUCT,
+  UPDATE_PRODUCT,
 } from "../types/categorytypes";
 import { useInsertDataWithImage } from "../../hook/useInsertData";
 import useGetData from "../../hook/useGetData";
 import useDeleteDtat from "../../hook/useDeleteDtat";
-
+import { useUpdateDataWithImage } from "../../hook/useUpdateData";
 // ==================  create product ==================
 export const createProduct = (formData) => async (dispatch) => {
   try {
@@ -77,6 +78,20 @@ export const deleteProduct = (id) => async (dispatch) => {
       payload: respons.data.data,
       loading: true,
     });
+  } catch (error) {
+    dispatch({ type: GET_ERROR, payload: "Something went wrong" + error });
+  }
+};
+
+// ==================  update product ==================
+
+export const updateProduct = (id, formData) => async (dispatch) => {
+  try {
+    const respons = await useUpdateDataWithImage(
+      `/api/v1/products/${id}`,
+      formData
+    );
+    dispatch({ type: UPDATE_PRODUCT, payload: respons, loading: true });
   } catch (error) {
     dispatch({ type: GET_ERROR, payload: "Something went wrong" + error });
   }

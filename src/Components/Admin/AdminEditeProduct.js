@@ -13,6 +13,8 @@ const AdminEditeProduct = () => {
 
   const [
     brandID,
+    catID,
+    selectedSubCat,
     categoryName,
     producName,
     setProducName,
@@ -98,7 +100,7 @@ const AdminEditeProduct = () => {
               onChange={(e) => setQuantity(e.target.value)}
             />
             <select
-              value={categoryName}
+              value={catID}
               name="category"
               id="lang"
               className="select input-form-area mt-3 px-2 "

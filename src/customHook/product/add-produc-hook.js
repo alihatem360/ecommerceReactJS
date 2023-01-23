@@ -28,8 +28,6 @@ const AddProducHook = () => {
     useState("السعر بعد الخصم");
   const [quantity, setQuantity] = useState(" الكميه المتاحه");
   const [catID, setCatID] = useState(0);
-  //  عرض العناصر الفرعيه اللي اليوزر اختارها
-  const [subCatIDs, setSubCatIDs] = useState("");
   const [brandID, setBrandID] = useState("");
   // خزن العناصر الفرعيه اللي اليوزر اختارها
   const [selectedSubCat, setSelectedSubCat] = useState([]);
@@ -50,7 +48,6 @@ const AddProducHook = () => {
   //  عرض العناصر الفرعيه علي اساس التصنيف الرئيسي اللي اليوزر اختارهو تخزينها في ال state
   useEffect(() => {
     if (catID !== 0) {
-      // console.log(subcategories, "subcategories from useEffect");
       setOptions(subcategories.data.data);
     }
   }, [catID]);
@@ -58,11 +55,9 @@ const AddProducHook = () => {
   // حفظ البراند اللي اليوزر اختاره
   const handelSelectBrand = (e) => {
     setBrandID(e.target.value);
-    // console.log(e.target.value, "brand id");
   };
 
   const handleOnChangeColor = (color) => {
-    // console.log(color.hex);
     setColors([...colors, color.hex]);
   };
 
@@ -131,13 +126,11 @@ const AddProducHook = () => {
     setLoading(true);
     await dispatch(createProduct(formData));
     setLoading(false);
-    // console.log("تم اضافه المنتج بنجاح");
   };
 
   const productStatus = useSelector(
     (state) => state.productReducer.product.status
   );
-  // console.log(productStatus, "product from redux");
 
   useEffect(() => {
     if (!loading) {
@@ -148,7 +141,6 @@ const AddProducHook = () => {
       setQuantity("الكميه المتاحه");
       setImages([]);
       setCatID(0);
-      setSubCatIDs("");
       setBrandID(0);
       setSelectedSubCat([]);
       setShowColor(false);

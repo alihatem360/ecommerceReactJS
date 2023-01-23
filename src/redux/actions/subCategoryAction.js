@@ -18,7 +18,6 @@ export const createSubcategory = (subcategory) => async (dispatch) => {
 export const getSubcategory = (id) => async (dispatch) => {
   try {
     const respons = await useGetData(`/api/v1/categories/${id}/subcategories`);
-    console.log(respons.data, "res from get subcategory");
     dispatch({ type: GET_SUBCATEGORY, payload: respons });
   } catch (error) {
     dispatch({ type: GET_ERROR, payload: "Something went wrong" + error });

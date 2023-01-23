@@ -20,12 +20,16 @@ const AllProductAdminHook = () => {
 
   let products = [];
   let pagination = [];
-  if (allProducts.data) {
-    products = allProducts.data.data;
-    pagination = allProducts.data.paginationResult;
-  } else {
-    products = [];
-    pagination = [];
+  try {
+    if (allProducts.data) {
+      products = allProducts.data.data;
+      pagination = allProducts.data.paginationResult;
+    } else {
+      products = [];
+      pagination = [];
+    }
+  } catch (error) {
+    console.log(error);
   }
 
   return [products, pagination, handelPaginate];
