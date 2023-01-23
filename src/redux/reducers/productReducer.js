@@ -5,6 +5,7 @@ import {
   GET_PRODUCT_DETAILS,
   GET_RELATED_PRODUCT,
   DELETE_PRODUCT,
+  UPDATE_PRODUCT,
 } from "../types/categorytypes";
 
 const initial = {
@@ -13,6 +14,7 @@ const initial = {
   oneProduct: [],
   relatedProduct: [],
   deleteedProduct: [],
+  updatedProduct: [],
   loading: true,
 };
 
@@ -46,6 +48,12 @@ const productReducer = (state = initial, action) => {
       return {
         ...state,
         deleteedProduct: action.payload,
+        loading: false,
+      };
+    case UPDATE_PRODUCT:
+      return {
+        ...state,
+        updatedProduct: action.payload,
         loading: false,
       };
 
