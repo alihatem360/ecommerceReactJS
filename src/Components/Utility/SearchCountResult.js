@@ -2,7 +2,20 @@ import React from "react";
 import UnopDropdown from "unop-react-dropdown";
 import filter from "../../images/filter.png";
 import sort from "../../images/sort.png";
-const SearchCountResult = ({ title }) => {
+
+const SearchCountResult = ({ title, onclick }) => {
+  const sortTitle = [
+    "بدون ترتيب",
+    "الاكثر مبيعا",
+    "الاعلى تقييما",
+    "السعر من الاقل الي الاعلى",
+    "السعر من الاعلى الي الاقل",
+  ];
+  const handelClickMe = (item) => {
+    // stor the item in local storage
+    localStorage.setItem("sortType", item);
+    onclick();
+  };
   const handler = () => {};
   const handler2 = () => {};
   return (
@@ -26,14 +39,20 @@ const SearchCountResult = ({ title }) => {
           }
           delay={0}
           align="CENTER"
-          hover>
+          hover
+        >
           <div className="card-filter">
-            <div className="border-bottom card-filter-item">الاكثر مبيعا</div>
-            <div className="border-bottom card-filter-item">الاعلي تقييما</div>
-            <div className="border-bottom card-filter-item">
-              السعر من الاقل للاعلي
-            </div>
-            <div className=" card-filter-item">السعر من الاعلي للاقل</div>
+            {sortTitle.map((item, index) => {
+              return (
+                <div
+                  key={index}
+                  className="border-bottom card-filter-item"
+                  onClick={() => handelClickMe(item)}
+                >
+                  {item}
+                </div>
+              );
+            })}
           </div>
         </UnopDropdown>
       </div>

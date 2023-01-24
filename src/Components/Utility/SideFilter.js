@@ -1,7 +1,9 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
-
+import SideFilterSearchHook from "../../customHook/search/sideFilter_search_hook";
 const SideFilter = () => {
+  // const [catItems, brandItems] = SideFilterSearchHook();
+  // console.log(catItems, brandItems, "catItems", "brandItems");
   return (
     <div className="mt-3">
       <Row>
@@ -11,22 +13,17 @@ const SideFilter = () => {
             <input type="checkbox" value="" />
             <div className="filter-sub me-2 ">الكل</div>
           </div>
-          <div className="d-flex mt-2">
-            <input type="checkbox" value="" />
-            <div className="filter-sub me-2 ">اجهزة منزلية</div>
-          </div>
-          <div className="d-flex mt-2">
-            <input type="checkbox" value="" />
-            <div className="filter-sub me-2 ">اجهزة منزلية</div>
-          </div>
-          <div className="d-flex mt-2">
-            <input type="checkbox" value="" />
-            <div className="filter-sub me-2 ">اجهزة منزلية</div>
-          </div>
-          <div className="d-flex mt-2">
-            <input type="checkbox" value="" />
-            <div className="filter-sub me-2 ">اجهزة منزلية</div>
-          </div>
+
+          {/* {catItems ? (
+            catItems.map((item, index) => (
+              <div className="d-flex mt-2" key={index}>
+                <input type="checkbox" value={item._id} />
+                <div className="filter-sub me-2 ">{item.name}</div>
+              </div>
+            ))
+          ) : (
+            <>لا يوجد فئات</>
+          )} */}
         </div>
 
         <div className="d-flex flex-column mt-2">
