@@ -5,10 +5,10 @@ import SearchCountResult from "../../Components/Utility/SearchCountResult";
 import PaginationCompontent from "../../Components/Utility/Pagination";
 import CategorysHeader from "../../Components/Category/CategorysHeader";
 import SideFilter from "../../Components/Utility/SideFilter";
-
 import SearchProductsHook from "../../customHook/product/search-product-hook";
 const ShopProducsPage = () => {
-  const [mostSoldProducts, pagination, handelPaginate] = SearchProductsHook();
+  const [mostSoldProducts, pagination, handelPaginate, handelSearch, result] =
+    SearchProductsHook();
 
   return (
     <div style={{ minHeight: "670px" }}>
@@ -16,8 +16,9 @@ const ShopProducsPage = () => {
       <Container style={{ minHeight: "660px" }}>
         <div className="">
           <SearchCountResult
+            onclick={handelSearch}
             title={`
-    هناك .. ${mostSoldProducts.length} .. نتيجة بحث
+    هناك .. ${result} .. نتيجة بحث
           `}
           />
           <Row className="d-flex flex-row">
@@ -32,6 +33,7 @@ const ShopProducsPage = () => {
               />
             </Col>
           </Row>
+
           <PaginationCompontent
             paginationPageNumber={pagination.numberOfPages}
             onPress={handelPaginate}

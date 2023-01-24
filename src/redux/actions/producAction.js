@@ -96,3 +96,14 @@ export const updateProduct = (id, formData) => async (dispatch) => {
     dispatch({ type: GET_ERROR, payload: "Something went wrong" + error });
   }
 };
+
+//  ==================  get all products with query Search ==================
+
+export const getAllProductSearch = (query) => async (dispatch) => {
+  try {
+    const respons = await useGetData(`/api/v1/products?${query}`);
+    dispatch({ type: GET_ALL_PRODUCT, payload: respons, loading: true });
+  } catch (error) {
+    dispatch({ type: GET_ERROR, payload: "Something went wrong" + error });
+  }
+};
