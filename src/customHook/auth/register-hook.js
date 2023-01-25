@@ -1,9 +1,6 @@
-import { useState, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useCallback } from "react";
+import { useDispatch } from "react-redux";
 
-
-const RegisterHook () => {
-
-}
+const RegisterHook = () => {};
 
 export default RegisterHook;

@@ -47,11 +47,11 @@ const SearchProductsHook = () => {
     if (localStorage.getItem("searchWord")) {
       word = localStorage.getItem("searchWord");
     }
-    if (localStorage.getItem("catCheck")) {
-      catQuery = localStorage.getItem("catCheck");
+    if (localStorage.getItem("catQuery")) {
+      catQuery = localStorage.getItem("catQuery");
     }
-    if (localStorage.getItem("brandCheck")) {
-      brandQuery = localStorage.getItem("brandCheck");
+    if (localStorage.getItem("brandQuery")) {
+      brandQuery = localStorage.getItem("brandQuery");
     }
     if (localStorage.getItem("priceTo") > 0) {
       priceTo = localStorage.getItem("priceTo");
