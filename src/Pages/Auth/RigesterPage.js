@@ -16,12 +16,22 @@ const Rigester = () => {
           <input
             placeholder="الايميل..."
             type="text"
+            className="user-input mt-3 text-center mx-auto"
+          />
+          <input
+            placeholder="رقم الهاتف..."
+            type="number"
             className="user-input my-3 text-center mx-auto"
           />
           <input
             placeholder="كلمه السر..."
             type="password"
             className="user-input text-center mx-auto"
+          />
+          <input
+            placeholder="تاكيد كلمه السر..."
+            type="password"
+            className="user-input my-3 text-center mx-auto"
           />
           <button className="btn-login mx-auto mt-4">تسجيل الحساب</button>
           <label className="mx-auto my-4">
