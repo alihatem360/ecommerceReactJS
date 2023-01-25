@@ -2,44 +2,62 @@ import React from "react";
 import { Row, Col } from "react-bootstrap";
 import SideFilterSearchHook from "../../customHook/search/sideFilter_search_hook";
 const SideFilter = () => {
-  // const [catItems, brandItems] = SideFilterSearchHook();
-  // console.log(catItems, brandItems, "catItems", "brandItems");
+  const [
+    catItems,
+    brandItems,
+    handelCatCheck,
+    handelBrandCheck,
+    handelPriceFrom,
+    handelPriceTo,
+  ] = SideFilterSearchHook();
+
   return (
     <div className="mt-3">
       <Row>
         <div className="d-flex flex-column mt-2">
           <div className="filter-title">الفئة</div>
           <div className="d-flex mt-3">
-            <input type="checkbox" value="" />
+            <input type="checkbox" value="0" onChange={handelCatCheck} />
             <div className="filter-sub me-2 ">الكل</div>
           </div>
 
-          {/* {catItems ? (
+          {catItems ? (
             catItems.map((item, index) => (
               <div className="d-flex mt-2" key={index}>
-                <input type="checkbox" value={item._id} />
+                <input
+                  type="checkbox"
+                  value={item._id}
+                  onChange={handelCatCheck}
+                />
                 <div className="filter-sub me-2 ">{item.name}</div>
               </div>
             ))
           ) : (
             <>لا يوجد فئات</>
-          )} */}
+          )}
         </div>
 
         <div className="d-flex flex-column mt-2">
           <div className="filter-title mt-3">الماركة</div>
+
           <div className="d-flex mt-3">
-            <input type="checkbox" value="" />
+            <input type="checkbox" value="0" onChange={handelBrandCheck} />
             <div className="filter-sub me-2 ">الكل</div>
           </div>
-          <div className="d-flex mt-2">
-            <input type="checkbox" value="" />
-            <div className="filter-sub me-2 ">ابل</div>
-          </div>
-          <div className="d-flex mt-2">
-            <input type="checkbox" value="" />
-            <div className="filter-sub me-2 ">سامسونج</div>
-          </div>
+          {brandItems ? (
+            brandItems.map((item, index) => (
+              <div className="d-flex mt-2" key={index}>
+                <input
+                  type="checkbox"
+                  value={item._id}
+                  onChange={handelBrandCheck}
+                />
+                <div className="filter-sub me-2 ">{item.name}</div>
+              </div>
+            ))
+          ) : (
+            <>لا يوجد ماركات</>
+          )}
         </div>
 
         <div className="filter-title my-3">السعر</div>
@@ -49,6 +67,8 @@ const SideFilter = () => {
             className="m-2 text-center"
             type="number"
             style={{ width: "50px", height: "25px" }}
+            onChange={handelPriceFrom}
+            value={localStorage.getItem("priceFrom")}
           />
         </div>
         <div className="d-flex">
@@ -57,6 +77,8 @@ const SideFilter = () => {
             className="m-2 text-center"
             type="number"
             style={{ width: "50px", height: "25px" }}
+            onChange={handelPriceTo}
+            value={localStorage.getItem("priceTo")}
           />
         </div>
       </Row>

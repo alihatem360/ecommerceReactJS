@@ -12,6 +12,12 @@ const NavBarSearchHook = () => {
   const onChangeSearchWord = (e) => {
     localStorage.setItem("searchWord", e.target.value);
     setSearchWord(e.target.value);
+
+    //  this code is to redirect to /products when searchWord change
+    // let path = window.location.pathname;
+    // if (path !== "/products") {
+    //   window.location.replace("/products");
+    // }
   };
 
   useEffect(() => {
