@@ -4,6 +4,7 @@ import { getAllProduct } from "../../redux/actions/producAction";
 
 const AllProductHomeHook = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getAllProduct());
   }, []);

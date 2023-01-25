@@ -15,8 +15,8 @@ const SearchProductsHook = () => {
 
   const dispatch = useDispatch();
   // =================== handel store ===================
-  let storType = "",
-    stor;
+  let storType = "";
+  let stor = "";
   const handelStore = () => {
     if (localStorage.getItem("sortType")) {
       storType = localStorage.getItem("sortType");
@@ -35,37 +35,68 @@ const SearchProductsHook = () => {
     }
   };
 
-  // =================== handel search ===================
-  const handelSearch = async () => {
-    // get word from local storage
-    let word = "";
+  let word = "";
+  let catQuery = "";
+  let brandQuery = "";
+  let priceTo = "";
+  let priceFrom = "";
+  let priceFromQuery = "";
+  let priceToQuery = "";
+  // =================== get data from local storage ===================
+  const getDataLocalStorage = () => {
     if (localStorage.getItem("searchWord")) {
       word = localStorage.getItem("searchWord");
     }
-    // get sort type from handelStore
+    if (localStorage.getItem("catCheck")) {
+      catQuery = localStorage.getItem("catCheck");
+    }
+    if (localStorage.getItem("brandCheck")) {
+      brandQuery = localStorage.getItem("brandCheck");
+    }
+    if (localStorage.getItem("priceTo") > 0) {
+      priceTo = localStorage.getItem("priceTo");
+    }
+    if (localStorage.getItem("priceFrom") > 0) {
+      priceFrom = localStorage.getItem("priceFrom");
+    }
+  };
+
+  // =================== check price before search ===================
+  const checkPrice = () => {
+    if (priceFrom > 0) {
+      priceFromQuery = `&price[gte]=${priceFrom}`;
+    }
+    if (priceTo > 0 && priceTo > priceFrom) {
+      priceToQuery = `&price[lte]=${priceTo}`;
+    }
+  };
+
+  // =================== handel search ===================
+  const handelSearch = async () => {
+    getDataLocalStorage();
     handelStore();
+    checkPrice();
     await dispatch(
       getAllProductSearch(
-        `&limit=${limitPage}&page=${paginatePage}&keyword=${word}&sort=${stor}`
+        `&limit=${limitPage}&page=${paginatePage}&keyword=${word}&sort=${stor}&${catQuery}&${brandQuery}${priceFromQuery}${priceToQuery}`
       )
     );
   };
-  //  run handelSearch when component mount
+
+  // =================== handel search when page load ===================
   useEffect(() => {
     handelSearch();
   }, []);
 
   // =================== handel pagination ===================
   const handelPaginate = (page) => {
-    let word = "";
-    if (localStorage.getItem("searchWord")) {
-      word = localStorage.getItem("searchWord");
-    }
+    getDataLocalStorage();
     setPaginatePage(page);
     handelStore();
+    checkPrice();
     dispatch(
       getAllProductSearch(
-        `&limit=${limitPage}&page=${page}&keyword=${word}&sort=${stor}`
+        `&limit=${limitPage}&page=${page}&keyword=${word}&sort=${stor}&${catQuery}&${brandQuery}${priceFromQuery}${priceToQuery}`
       )
     );
   };
@@ -81,13 +112,17 @@ const SearchProductsHook = () => {
     if (allProducts.data) {
       mostSoldProducts = allProducts.data.data;
       pagination = allProducts.data.paginationResult;
+      // result of search query (number of result)
       result = allProducts.data.results;
     } else {
       mostSoldProducts = [];
       pagination = [];
       result = 0;
     }
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
+
   return [mostSoldProducts, pagination, handelPaginate, handelSearch, result];
 };
 
