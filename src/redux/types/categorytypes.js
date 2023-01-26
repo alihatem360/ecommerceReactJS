@@ -22,3 +22,6 @@ export const GET_PRODUCT_DETAILS = "GET_PRODUCT_DETAILS";
 export const GET_RELATED_PRODUCT = "GET_RELATED_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
+
+// ==================  auth types ==================
+export const CREATE_USER = "CREATE_USER";
