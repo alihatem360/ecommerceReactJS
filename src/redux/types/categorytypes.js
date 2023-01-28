@@ -25,3 +25,4 @@ export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 
 // ==================  auth types ==================
 export const CREATE_USER = "CREATE_USER";
+export const LOGIN_USER = "LOGIN_USER";

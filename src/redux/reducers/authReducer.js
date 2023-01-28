@@ -1,7 +1,8 @@
-import { CREATE_USER } from "../types/categorytypes";
+import { CREATE_USER, LOGIN_USER } from "../types/categorytypes";
 
 const initialState = {
   createdUser: [],
+  loginUser: [],
 };
 
 const authreduccer = (state = initialState, action) => {
@@ -11,6 +12,13 @@ const authreduccer = (state = initialState, action) => {
         ...state,
         createdUser: action.payload,
       };
+
+    case LOGIN_USER:
+      return {
+        ...state,
+        loginUser: action.payload,
+      };
+
     default:
       return state;
   }
