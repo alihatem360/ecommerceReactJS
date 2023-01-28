@@ -1,8 +1,10 @@
-import { useEffect } from "react";
-import { useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../../redux/actions/authAction";
+import { useNavigate } from "react-router-dom";
 const RegisterHook = () => {
+  // -= navigation =-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -74,6 +76,30 @@ const RegisterHook = () => {
     setIsLoding(false);
   };
 
+  //   ====================== handelErrormassage to show the error massage to the user ======================
+  const handelErrormassage = (massage) => {
+    console.log(massage, "massage");
+    if (massage === "E-mail already in use") {
+      alert("الايميل مستخدم من قبل");
+    }
+
+    if (massage === "Invalid email formate") {
+      alert("الايميل غير صحيح");
+    }
+    if (massage === "accept only egypt phone numbers") {
+      alert("رقم الهاتف غير صحيح");
+    }
+  };
+
+  // ====================== crete fun to reset the form ======================
+  const resetForm = () => {
+    setName("");
+    setEmail("");
+    setPhone("");
+    setPassword("");
+    setConfirmPassword("");
+  };
+
   //  ====================== useSelector to get the data from the server ======================
   const respons = useSelector((state) => state.authreduccer.createdUser);
   //   console.log(respons, "respons in hook register");
@@ -85,13 +111,18 @@ const RegisterHook = () => {
       if (respons.token) {
         //    store the token in the local storage
         localStorage.setItem("token", respons.token);
-        alert("you are registerd");
+        alert("تم التسجيل بنجاح");
+        //   reset the form
+        resetForm();
+
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
       }
 
       if (respons.errors) {
-        if (respons.errors[0].msg === "E-mail already in use") {
-          alert("E-mail already in use");
-        }
+        // handel the error massage
+        handelErrormassage(respons.errors[0].msg);
       }
     }
   }, [isLoding]);

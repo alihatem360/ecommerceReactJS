@@ -7,7 +7,6 @@ const useUpdateData = async (url, data) => {
 };
 
 //  insert with image
-
 const useUpdateDataWithImage = async (url, data) => {
   const config = {
     headers: {
