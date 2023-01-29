@@ -666,3 +666,30 @@ body {
   opacity: 0;
   z-index: -1;
 }
+
+/*  
+update some bootstrap style 
+
+*/
+.dropdown-item {
+  color: #555550;
+  font-family: "Almarai";
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: 19px;
+  text-align: right !important;
+}
+
+#basic-nav-dropdown {
+  color: #f1f1ea !important;
+  font-family: "Almarai";
+  letter-spacing: 0;
+  line-height: 19px;
+  text-align: right !important;
+  font-size: 20px !important;
+  margin: -9px 0 -3px 0 !important;
+}
+
+.dropdown-toggle::after {
+  margin: 0 7px 0 0;
+}

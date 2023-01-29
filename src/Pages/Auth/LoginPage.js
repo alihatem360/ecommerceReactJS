@@ -41,6 +41,9 @@ const LoginPage = () => {
                 اضغط هنا
               </span>
             </Link>
+            {/* 
+              loading spinner
+             */}
             {isLogin ? (
               <Spinner
                 animation="border"
@@ -48,6 +51,14 @@ const LoginPage = () => {
                 className="mx-1 mt-1"
               />
             ) : null}
+          </label>
+
+          <label className="mx-auto my-4">
+            <Link to="/user/forgetPassword" style={{ textDecoration: "none" }}>
+              <span style={{ cursor: "pointer" }} className="text-danger">
+                نسيت كلمه السر ؟{" "}
+              </span>
+            </Link>
           </label>
           <Link to="/admin/allproducts" style={{ textDecoration: "none" }}>
             <label className="mx-auto text-center">الدخول بحساب الادمن</label>

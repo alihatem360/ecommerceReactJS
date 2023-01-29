@@ -4,7 +4,7 @@ import {
   GEARTE_CATEGORY,
   GET_SPECIFIC_CATEGORY,
 } from "../types/categorytypes";
-import useGetData from "../../hook/useGetData";
+import { useGetData } from "../../hook/useGetData";
 import { useInsertDataWithImage } from "../../hook/useInsertData";
 
 // ==================  get all category ==================

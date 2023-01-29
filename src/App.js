@@ -24,6 +24,8 @@ import UserProfilePage from "./Pages/User/UserProfilePage";
 import ChoosePayMethoudPage from "./Pages/Checkout/ChoosePayMethoudPage";
 import AdminOrderDetalisPage from "./Pages/Admin/AdminOrderDetalisPage";
 import AdminEditeProductPage from "./Pages/Admin/AdminEditeProductPage";
+import ForgetPasswordPage from "./Pages/Auth/ForgetPasswordPage";
+import UserVerifyCodePage from "./Pages/Auth/UserVerifyCodePage";
 function App() {
   return (
     <div className="font">
@@ -85,6 +87,15 @@ function App() {
           <Route
             path="/admin/orders/23"
             element={<AdminOrderDetalisPage />}
+          ></Route>
+
+          <Route
+            path="/user/forgetPassword"
+            element={<ForgetPasswordPage />}
+          ></Route>
+          <Route
+            path="/user/verify-code"
+            element={<UserVerifyCodePage />}
           ></Route>
         </Routes>
       </BrowserRouter>
