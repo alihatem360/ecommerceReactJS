@@ -1,8 +1,17 @@
-import { CREATE_USER, LOGIN_USER } from "../types/categorytypes";
+import {
+  CREATE_USER,
+  LOGIN_USER,
+  GET_LOGGED_USER,
+  FORGET_PASSWORD,
+  VERIFY_CODE,
+} from "../types/categorytypes";
 
 const initialState = {
   createdUser: [],
   loginUser: [],
+  loggedUser: [],
+  resetCode: [],
+  verifyCode: [],
 };
 
 const authreduccer = (state = initialState, action) => {
@@ -17,6 +26,21 @@ const authreduccer = (state = initialState, action) => {
       return {
         ...state,
         loginUser: action.payload,
+      };
+    case GET_LOGGED_USER:
+      return {
+        ...state,
+        loggedUser: action.payload,
+      };
+    case FORGET_PASSWORD:
+      return {
+        ...state,
+        resetCode: action.payload,
+      };
+    case VERIFY_CODE:
+      return {
+        ...state,
+        verifyCode: action.payload,
       };
 
     default:

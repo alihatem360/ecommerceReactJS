@@ -4,7 +4,7 @@ import {
   GETT_SPECIFIC_BRAND,
   GET_ERROR,
 } from "../types/categorytypes";
-import useGetData from "../../hook/useGetData";
+import { useGetData } from "../../hook/useGetData";
 import { useInsertDataWithImage } from "../../hook/useInsertData";
 
 export const getAllBrands = (limit) => async (dispatch) => {
