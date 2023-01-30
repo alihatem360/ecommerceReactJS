@@ -4,6 +4,7 @@ import {
   GET_LOGGED_USER,
   FORGET_PASSWORD,
   VERIFY_CODE,
+  RESET_PASSWORD,
 } from "../types/categorytypes";
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   loggedUser: [],
   resetCode: [],
   verifyCode: [],
+  resetPassword: [],
 };
 
 const authreduccer = (state = initialState, action) => {
@@ -36,6 +38,11 @@ const authreduccer = (state = initialState, action) => {
       return {
         ...state,
         resetCode: action.payload,
+      };
+    case RESET_PASSWORD:
+      return {
+        ...state,
+        resetPassword: action.payload,
       };
     case VERIFY_CODE:
       return {

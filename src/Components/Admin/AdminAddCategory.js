@@ -21,6 +21,9 @@ const AdminAddCategory = () => {
         <div className="admin-content-text pb-4">اضافه تصنيف جديد</div>
         <Col sm="8">
           <div className="text-form pb-2">صوره التصنيف</div>
+          {/* 
+          //  عند الضغط على الصوره يظهر لنا نافذه لاختيار الصوره من جهازنا
+           */}
           <div>
             <label for="upload-photo">
               <img

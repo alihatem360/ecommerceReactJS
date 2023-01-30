@@ -36,7 +36,6 @@ const LoginHook = () => {
 
   //  ====================== get the data from the server when user login  ======================
   const auth = useSelector((state) => state.authreduccer.loginUser);
-  //   console.log(auth, "auth");
 
   //  ====================== store the data(token)  & USER DATA in the local storage when user login  ======================
   useEffect(() => {

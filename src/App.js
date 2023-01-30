@@ -26,6 +26,8 @@ import AdminOrderDetalisPage from "./Pages/Admin/AdminOrderDetalisPage";
 import AdminEditeProductPage from "./Pages/Admin/AdminEditeProductPage";
 import ForgetPasswordPage from "./Pages/Auth/ForgetPasswordPage";
 import UserVerifyCodePage from "./Pages/Auth/UserVerifyCodePage";
+import ResetPasswordresetPage from "./Pages/Auth/ResetPasswordresetPage";
+
 function App() {
   return (
     <div className="font">
@@ -96,6 +98,11 @@ function App() {
           <Route
             path="/user/verify-code"
             element={<UserVerifyCodePage />}
+          ></Route>
+
+          <Route
+            path="/user/reset-password"
+            element={<ResetPasswordresetPage />}
           ></Route>
         </Routes>
       </BrowserRouter>

@@ -44,6 +44,16 @@ const AddCategoryHook = () => {
     setLoading(false);
   };
 
+  //  get response from server and store it in category const
+
+  const categoryResponse = useSelector(
+    (state) => state.categoryReducer.categories
+  );
+
+  if (categoryResponse) {
+    console.log(categoryResponse, "categoryResponse from server");
+  }
+
   //  فضي الحقول بعد اضافه التصنيف
   useEffect(() => {
     if (!loading) {

@@ -60,7 +60,6 @@ const RegisterHook = () => {
 
   //   ====================== handelSubmit to send the data to the server ======================
   const handelSubmit = async (e) => {
-    console.log("handelSubmit in hook register");
     e.preventDefault();
     handelValidate();
     setIsLoding(true);
@@ -78,7 +77,6 @@ const RegisterHook = () => {
 
   //   ====================== handelErrormassage to show the error massage to the user ======================
   const handelErrormassage = (massage) => {
-    console.log(massage, "massage");
     if (massage === "E-mail already in use") {
       alert("الايميل مستخدم من قبل");
     }
@@ -102,12 +100,10 @@ const RegisterHook = () => {
 
   //  ====================== useSelector to get the data from the server ======================
   const respons = useSelector((state) => state.authreduccer.createdUser);
-  //   console.log(respons, "respons in hook register");
 
   //   ====================== useEffect run when submit the form ======================
   useEffect(() => {
     if (respons) {
-      //   console.log(respons, "respons");
       if (respons.token) {
         //    store the token in the local storage
         localStorage.setItem("token", respons.token);
