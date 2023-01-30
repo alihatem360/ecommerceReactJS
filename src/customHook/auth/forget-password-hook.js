@@ -11,7 +11,6 @@ const ForgetPasswordHook = () => {
   //   ====================== handelEmailChange to get the email from the user ======================
   const handelEmailChange = (e) => {
     setEmail(e.target.value);
-    console.log(email, "email");
   };
   // ====================== handelSubmit to get reset password link ======================
   const handelSubmit = async (e) => {
@@ -20,6 +19,8 @@ const ForgetPasswordHook = () => {
       alert("الايميل مطلوب");
     }
     setIsLoding(true);
+    // save the email in the local storage to use it in the reset password page
+    localStorage.setItem("user_email", email);
     await dispatch(
       forgetPassword({
         email: email,

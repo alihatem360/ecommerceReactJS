@@ -4,9 +4,11 @@ import {
   GET_LOGGED_USER,
   FORGET_PASSWORD,
   VERIFY_CODE,
+  RESET_PASSWORD,
 } from "../types/categorytypes";
 import { useInsertData } from "../../hook/useInsertData";
 import { useGetDataWithToken } from "../../hook/useGetData";
+import { useUpdateData } from "../../hook/useUpdateData";
 export const createUser = (formData) => async (dispatch) => {
   try {
     const respons = await useInsertData(`/api/v1/auth/signup`, formData);
@@ -62,5 +64,16 @@ export const verifyCode = (code) => async (dispatch) => {
     dispatch({ type: VERIFY_CODE, payload: respons });
   } catch (error) {
     dispatch({ type: VERIFY_CODE, payload: error.response.data });
+  }
+};
+
+// ==================  Reset Password ==================
+
+export const resetPassword = (password) => async (dispatch) => {
+  try {
+    const respons = await useUpdateData(`/api/v1/auth/resetPassword`, password);
+    dispatch({ type: RESET_PASSWORD, payload: respons });
+  } catch (error) {
+    dispatch({ type: RESET_PASSWORD, payload: error.response.data });
   }
 };

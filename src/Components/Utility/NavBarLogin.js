@@ -42,7 +42,7 @@ const NavBarLogin = () => {
   const handelLOgOut = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    window.location.reload();
+    window.location.href = "/login";
   };
 
   return (
@@ -74,9 +74,24 @@ const NavBarLogin = () => {
               <img src={login} className="login-img" alt="sfvs" />
               {user != null ? (
                 <NavDropdown title={user.name} id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">
-                    الصفحه الشخصيه
-                  </NavDropdown.Item>
+                  {user.role == "admin" ? (
+                    <>
+                      <NavDropdown.Item href="/admin/allproducts">
+                        لوحه التحكم
+                      </NavDropdown.Item>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                  {user.role == "user" ? (
+                    <>
+                      <NavDropdown.Item href="/user/user/user-profile">
+                        ملف شخصي
+                      </NavDropdown.Item>
+                    </>
+                  ) : (
+                    <></>
+                  )}
                   <NavDropdown.Item href="#action/3.2">طلباتي</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action/3.3" onClick={handelLOgOut}>
