@@ -107,7 +107,6 @@ const AddProducHook = () => {
     formData.append("imageCover", imageFile);
     formData.append("category", catID);
     formData.append("brand", brandID);
-
     // send the array of colors
     colors.map((color) => {
       formData.append("availableColors", color);
