@@ -13,12 +13,22 @@ const ProductDetalisPage = () => {
     relatedProductArray = relatedProduct.slice(0, 4);
   }
 
+  let ratingsAverage = "",
+    ratingsQuantity = "";
+  if (product) {
+    ratingsAverage = product.ratingsAverage;
+    ratingsQuantity = product.ratingsQuantity;
+  }
+
   return (
     <div>
       <CategorysHeader />
       <Container>
         <ProductDetails />
-        <RateContainer />
+        <RateContainer
+          ratingsAverage={ratingsAverage}
+          ratingsQuantity={ratingsQuantity}
+        />
         <CardProductsContainer
           products={relatedProductArray}
           title="منتجات قد تعجبك"
