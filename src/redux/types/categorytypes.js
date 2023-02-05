@@ -34,3 +34,5 @@ export const RESET_PASSWORD = "RESET_PASSWORD";
 // ==================  review types ==================
 
 export const CREATE_REVIEW = "CREATE_REVIEW";
+export const GET_ALL_REVIEWS_ONE_PRODUCT = "GET_ALL_REVIEWS_ONE_PRODUCT";
+export const DELETE_REVIEW = "DELETE_REVIEW";
