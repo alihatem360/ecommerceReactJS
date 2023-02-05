@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import { createReview } from "../../redux/actions/reviewAction";
 import { createReview } from "../../redux/actions/reviewAction";
 const AddReviewHook = (id) => {
   const dispatch = useDispatch();
@@ -17,10 +16,11 @@ const AddReviewHook = (id) => {
   };
 
   const onSubmit = async (e) => {
-    console.log("onSubmit");
     e.preventDefault();
-    console.log("review", review);
-    console.log("rating", rating);
+    if (review === "") {
+      alert("يجب ادخال التقييم");
+      return;
+    }
     setLoading(true);
     await dispatch(
       createReview(id, {
@@ -51,6 +51,7 @@ const AddReviewHook = (id) => {
         }
         if (reriewResponse.data.review) {
           alert("تم اضافة التقييم بنجاح");
+          window.location.reload();
         }
       } catch (error) {
         console.log("error", error);
