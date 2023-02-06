@@ -2,12 +2,14 @@ import {
   CREATE_REVIEW,
   GET_ALL_REVIEWS_ONE_PRODUCT,
   DELETE_REVIEW,
+  EDIT_REVIEW,
 } from "../types/categorytypes";
 
 const initial = {
   review: [],
   allReviewsOneProduct: [],
   deletedReview: [],
+  updatedReview: [],
   isLoding: true,
 };
 
@@ -30,6 +32,13 @@ const reviewReducer = (state = initial, action) => {
       return {
         ...state,
         deletedReview: action.payload,
+        isLoding: false,
+      };
+
+    case EDIT_REVIEW:
+      return {
+        ...state,
+        updatedReview: action.payload,
         isLoding: false,
       };
 

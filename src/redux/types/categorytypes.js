@@ -36,3 +36,10 @@ export const RESET_PASSWORD = "RESET_PASSWORD";
 export const CREATE_REVIEW = "CREATE_REVIEW";
 export const GET_ALL_REVIEWS_ONE_PRODUCT = "GET_ALL_REVIEWS_ONE_PRODUCT";
 export const DELETE_REVIEW = "DELETE_REVIEW";
+export const EDIT_REVIEW = "EDIT_REVIEW";
+
+// ==================  wishlist types ==================
+
+export const ADD_TO_WISHLIST = "ADD_TO_WISHLIST";
+export const REMOVE_FROM_WISHLIST = "REMOVE_FROM_WISHLIST";
+export const GET_USER_WISHLIST = "GET_USER_WISHLIST";

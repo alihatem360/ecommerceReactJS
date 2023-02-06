@@ -2,13 +2,12 @@ import {
   CREATE_REVIEW,
   GET_ALL_REVIEWS_ONE_PRODUCT,
   DELETE_REVIEW,
-  GET_ERROR,
+  EDIT_REVIEW,
 } from "../types/categorytypes";
 import { useInsertData } from "../../hook/useInsertData";
 import { useGetDataWithToken } from "../../hook/useGetData";
 import useDeleteDataa from "../../hook/useDeleteDtat";
-import axios from "axios";
-
+import { useUpdateData } from "../../hook/useUpdateData";
 export const createReview = (productId, formData) => async (dispatch) => {
   try {
     const respons = await useInsertData(
@@ -38,22 +37,22 @@ export const getAllReviewsOneProduct =
 
 export const deleteReview = (id) => async (dispatch) => {
   try {
-    // delete review using axios wth token from local storage
-    // const respons = await axios.delete(
-    //   `http://127.0.0.1:8000/api/v1/reviews/${id}`,
-    //   {
-    //     headers: {
-    //       Authorization: `Bearer ${localStorage.getItem("token")}`,
-    //     },
-    //   }
-    // );
-
-    // delete review using custom hook
-
     const respons = await useDeleteDataa(`/api/v1/reviews/${id}`);
 
     dispatch({ type: DELETE_REVIEW, payload: respons });
   } catch (error) {
     dispatch({ type: DELETE_REVIEW, payload: error.response });
+  }
+};
+
+// ==================  edit review ==================
+
+export const editReview = (id, formData) => async (dispatch) => {
+  try {
+    const respons = await useUpdateData(`/api/v1/reviews/${id}`, formData);
+
+    dispatch({ type: EDIT_REVIEW, payload: respons });
+  } catch (error) {
+    dispatch({ type: EDIT_REVIEW, payload: error.response });
   }
 };

@@ -13,6 +13,7 @@ const ShopProducsPage = () => {
   return (
     <div style={{ minHeight: "670px" }}>
       <CategorysHeader />
+
       <Container style={{ minHeight: "660px" }}>
         <div className="">
           <SearchCountResult
