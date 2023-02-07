@@ -74,24 +74,16 @@ const NavBarLogin = () => {
               <img src={login} className="login-img" alt="sfvs" />
               {user != null ? (
                 <NavDropdown title={user.name} id="basic-nav-dropdown">
-                  {user.role == "admin" ? (
-                    <>
-                      <NavDropdown.Item href="/admin/allproducts">
-                        لوحه التحكم
-                      </NavDropdown.Item>
-                    </>
-                  ) : (
-                    <></>
-                  )}
-                  {user.role == "user" ? (
-                    <>
-                      <NavDropdown.Item href="/user/user/user-profile">
-                        ملف شخصي
-                      </NavDropdown.Item>
-                    </>
-                  ) : (
-                    <></>
-                  )}
+                  {user.role === "admin" ? (
+                    <NavDropdown.Item href="/admin/allproducts">
+                      لوحه التحكم
+                    </NavDropdown.Item>
+                  ) : null}
+                  {user.role === "user" ? (
+                    <NavDropdown.Item href="/user/user-profile">
+                      ملف شخصي
+                    </NavDropdown.Item>
+                  ) : null}
                   <NavDropdown.Item href="#action/3.2">طلباتي</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action/3.3" onClick={handelLOgOut}>
@@ -99,10 +91,7 @@ const NavBarLogin = () => {
                   </NavDropdown.Item>
                 </NavDropdown>
               ) : (
-                <>
-                  {" "}
-                  <p style={{ color: "white" }}>دخول</p>{" "}
-                </>
+                <p style={{ color: "white" }}>دخول</p>
               )}
             </Nav.Link>
             <Nav.Link
