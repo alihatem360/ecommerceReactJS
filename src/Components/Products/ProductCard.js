@@ -1,50 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { Button, Card, Col } from "react-bootstrap";
-import prod1 from "../../images/labtop.png";
+import React from "react";
+import { Card, Col } from "react-bootstrap";
 import favoff from "../../images/fav-off.png";
 import favon from "../../images/fav-on2.png";
 import rate from "../../images/rate.png";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { addToWishList } from "../../redux/actions/wishListAction";
-import { removeFromWishList } from "../../redux/actions/wishListAction";
-const ProductCard = ({ product }) => {
-  const dispatch = useDispatch();
-  const [favCliched, setFavCliched] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const handelAddToWishList = () => {
-    // =================== add to wish list ===================
-    if (!favCliched) {
-      dispatch(
-        addToWishList({
-          productId: product._id,
-        })
-      );
-      // console.log("تم اضافة المنتج الى قائمة المفضلة بنجاح");
-      setFavCliched(!favCliched);
-    }
-    // =================== remove from wish list ===================
-    if (favCliched) {
-      dispatch(removeFromWishList(product._id));
-      // console.log("تم حذف المنتج من قائمة المفضلة بنجاح");
-      setFavCliched(!favCliched);
-    }
-  };
-
-  const wishList = useSelector((state) => state.wishListReducer.wishList);
-  const removedWishList = useSelector(
-    (state) => state.wishListReducer.removedWishList
-  );
-
-  useEffect(() => {
-    if (wishList.data !== null) {
-      console.log("تم اضافة المنتج الى قائمة المفضلة بنجاح");
-    }
-    if (removedWishList.status === "success") {
-      console.log("تم حذف المنتج من قائمة المفضلة بنجاح");
-    }
-  }, [wishList, removedWishList]);
+import mobile1 from "../../images/mobile1.png";
+import ProductCardHook from "../../customHook/product/product-card-hook";
+const ProductCard = ({ product, favItem }) => {
+  // get favorite items from product-card-hook
+  const [favCliched, handelAddToWishList] = ProductCardHook(product, favItem);
   return (
     <Col xs="6" sm="6" md="4" lg="3" className="d-flex">
       <Card
@@ -67,7 +31,11 @@ const ProductCard = ({ product }) => {
         >
           <Card.Img
             style={{ height: "228px", width: "100%" }}
-            src={product.imageCover}
+            src={
+              product.imageCover[0] !== "h"
+                ? `http://127.0.0.1:8000/products/${product.imageCover}`
+                : product.imageCover
+            }
           />
         </Link>
         <div className="d-flex justify-content-end mx-2">

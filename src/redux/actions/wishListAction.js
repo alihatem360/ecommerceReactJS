@@ -33,7 +33,6 @@ export const removeFromWishList = (id) => async (dispatch) => {
 export const getUserWishList = () => async (dispatch) => {
   try {
     const respons = await useGetDataWithToken(`/api/v1/wishlist`);
-    console.log(respons, "respons");
     dispatch({ type: GET_USER_WISHLIST, payload: respons });
   } catch (error) {
     dispatch({ type: GET_USER_WISHLIST, payload: error.response });
