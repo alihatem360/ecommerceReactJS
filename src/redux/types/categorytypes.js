@@ -43,3 +43,16 @@ export const EDIT_REVIEW = "EDIT_REVIEW";
 export const ADD_TO_WISHLIST = "ADD_TO_WISHLIST";
 export const REMOVE_FROM_WISHLIST = "REMOVE_FROM_WISHLIST";
 export const GET_USER_WISHLIST = "GET_USER_WISHLIST";
+
+// ==================  Coupon types ==================
+
+export const CREATE_COUPON = "CREATE_COUPON";
+export const GET_ALL_COUPON = "GET_ALL_COUPON";
+export const DELETE_COUPON = "DELETE_COUPON";
+export const EDIT_COUPON = "EDIT_COUPON";
+export const GET_SPECIFIC_COUPON = "GET_SPECIFIC_COUPON";
+
+// ==================  user types ==================
+
+export const USER_ADD_ADDRESS = "USER_ADD_ADDRESS";
+export const GET_ALL_ADDRESS = "GET_ALL_ADDRESS";
