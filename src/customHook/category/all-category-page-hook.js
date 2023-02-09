@@ -24,6 +24,7 @@ const AllCategoryPageHook = () => {
   }
 
   // set page number when user click on pagination
+
   const setPageNumber = (pageNumber) => {
     dispatch(getAllCategoryPage(pageNumber, limitPage));
     console.log(pageNumber);
