@@ -29,7 +29,6 @@ const UserAddAddressHook = () => {
   };
 
   const handelSubmit = async (e) => {
-    console.log("submit");
     if (alias === "" || details === "" || phone === "") {
       console.log("من فضلك ادخل جميع البيانات");
       return;

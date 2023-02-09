@@ -87,7 +87,7 @@ function App() {
             element={<UserAddAddressPage />}
           ></Route>
           <Route
-            path="/user/edit-address"
+            path="/user/edit-address/:id"
             element={<UserEditAddressPage />}
           ></Route>
           <Route path="user/user-profile" element={<UserProfilePage />}></Route>

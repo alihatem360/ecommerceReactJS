@@ -20,6 +20,9 @@ const AdminCouponCard = ({ coupon }) => {
 
   return (
     <div className="user-address-card my-3">
+      {
+        //  modal for delete coupon
+      }
       <Modal show={show} onHide={handleClose}>
         <Modal.Header>
           <Modal.Title>
