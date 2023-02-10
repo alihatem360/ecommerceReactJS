@@ -1,12 +1,12 @@
 import baseURL from "../API/baseURL";
 
-const useGetData = async (url, params) => {
+const useGetData = async (url) => {
   const config = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   };
-  const res = await baseURL.get(url, params, config);
+  const res = await baseURL.get(url, config);
   return res;
 };
 

@@ -10,8 +10,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import NavBarSearchHook from "../../customHook/search/navBar_search_hooh";
 import { NavDropdown } from "react-bootstrap";
-
+import GetAllUserCartHook from "../../customHook/cart/get-all-user-cart-hook";
 const NavBarLogin = () => {
+  const [numOfCartItems, productItems] = GetAllUserCartHook();
   const [searchWord, onChangeSearchWord] = NavBarSearchHook();
   const dispatch = useDispatch();
   // get word from local storage
@@ -96,10 +97,13 @@ const NavBarLogin = () => {
             </Nav.Link>
             <Nav.Link
               href="/cart"
-              className="nav-text d-flex mt-3 justify-content-center"
+              className="nav-text d-flex mt-3 justify-content-center position-relative"
               style={{ color: "white" }}
             >
               <img src={cart} className="login-img" alt="sfvs" />
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {numOfCartItems ? numOfCartItems : 0}
+              </span>
               <p style={{ color: "white" }}>العربه</p>
             </Nav.Link>
           </Nav>

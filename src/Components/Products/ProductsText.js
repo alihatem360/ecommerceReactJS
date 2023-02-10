@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import ViewProductDetailsHook from "../../customHook/product/view-produc-details-hook";
-
+import AddProductToCartHook from "../../customHook/cart/add-product-to-cart-hook";
 const ProductsText = () => {
   const { id } = useParams();
+
   const [product, images, category, brand] = ViewProductDetailsHook(id);
+
+  const [
+    cart,
+    addToCartHandler,
+    clickedColor,
+    handelClickedColor,
+    clickedColorIndex,
+  ] = AddProductToCartHook(id, product);
   return (
     <div>
       <Row className="mt-2">
@@ -38,8 +47,13 @@ const ProductsText = () => {
                 return (
                   <div
                     key={index}
-                    className="color ms-2 border"
-                    style={{ backgroundColor: color }}
+                    className="color ms-2 "
+                    onClick={() => handelClickedColor(index, color)}
+                    style={{
+                      backgroundColor: color,
+                      border:
+                        clickedColorIndex === index ? "2px solid #332C39" : "",
+                    }}
                   ></div>
                 );
               })
@@ -62,7 +76,10 @@ const ProductsText = () => {
           <div className="product-price d-inline px-3 py-3 border">
             {product.price ? product.price : "0"} ريال
           </div>
-          <div className="product-cart-add px-3 py-3 d-inline mx-3">
+          <div
+            className="product-cart-add px-3 py-3 d-inline mx-3"
+            onClick={addToCartHandler}
+          >
             اضف للعربة
           </div>
         </Col>

@@ -61,3 +61,10 @@ export const USER_UPDATE_ADDRESS = "USER_UPDATE_ADDRESS";
 export const GET_SPECIFIC_ADDRESS = "GET_SPECIFIC_ADDRESS";
 export const UPDATE_USER_DATA = "UPDATE_USER_DATA";
 export const USER_CHANGE_PASSWORD = "USER_CHANGE_PASSWORD";
+
+// ==================  cart types ==================
+
+export const ADD_TO_CART = "ADD_TO_CART";
+export const GET_ALL_USER_CART = "GET_ALL_USER_CART";
+export const CLEAR_All_USER_CART = "CLEAR_All_USER_CART";
+export const DELETE_CART_ITEM = "DELETE_CART_ITEM";
