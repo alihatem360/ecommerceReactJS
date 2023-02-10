@@ -693,3 +693,23 @@ update some bootstrap style
 .dropdown-toggle::after {
   margin: 0 7px 0 0;
 }
+
+/* 
+  update some bootstrap style .badge
+*/
+
+.badge.bg-danger {
+  font-size: 13px !important;
+  font-weight: bold !important;
+}
+
+/* 
+  cart-item-body image
+*/
+
+.cart-item-coverImg {
+  margin: 0 0 0 19px !important;
+  height: 100% !important;
+  border-radius: 19px;
+  padding: 9px 5px;
+}
