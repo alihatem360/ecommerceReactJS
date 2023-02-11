@@ -8,6 +8,9 @@ const GetAllUserCartHook = () => {
   const [numOfCartItems, setNumOfCartItems] = useState(0);
   const [productItems, setProductItems] = useState([]);
 
+  const [couponNameResponse, setCouponNameResponse] = useState("");
+  const [totalAfterDiscount, setTotalAfterDiscount] = useState(0);
+
   //   handel add to cart
   useEffect(() => {
     const getdata = async () => {
@@ -21,6 +24,9 @@ const GetAllUserCartHook = () => {
 
   // get data after add to cart
   const userCart = useSelector((state) => state.cartReducer.userCart);
+  // if (userCart.status === 200) {
+  //   console.log("userCart.data", userCart.data);
+  // }
 
   useEffect(() => {
     if (!loading) {
@@ -29,11 +35,18 @@ const GetAllUserCartHook = () => {
           console.log("تم جلب السلة بنجاح");
           setNumOfCartItems(userCart.data.numOfCartItems);
           setProductItems(userCart.data.data);
+          if (userCart.data.data.coupon) {
+            setCouponNameResponse(userCart.data.data.coupon);
+            setTotalAfterDiscount(userCart.data.data.totalAfterDiscount);
+          } else {
+            setCouponNameResponse("");
+            setTotalAfterDiscount(0);
+          }
         }
       }
     }
   }, [userCart, loading]);
 
-  return [numOfCartItems, productItems];
+  return [numOfCartItems, productItems, couponNameResponse, totalAfterDiscount];
 };
 export default GetAllUserCartHook;

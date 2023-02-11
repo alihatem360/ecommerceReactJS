@@ -3,6 +3,8 @@ import {
   GET_ALL_USER_CART,
   CLEAR_All_USER_CART,
   DELETE_CART_ITEM,
+  UPDATE_CART_ITEM,
+  APPLAY_COUPON_CART,
 } from "../types/categorytypes";
 
 const initialState = {
@@ -10,6 +12,8 @@ const initialState = {
   userCart: [],
   clearCart: [],
   deleteCartItem: [],
+  updatedCartItem: [],
+  applayCoupon: [],
 };
 
 const cartReducer = (state = initialState, action) => {
@@ -34,6 +38,16 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         deleteCartItem: action.payload,
+      };
+    case UPDATE_CART_ITEM:
+      return {
+        ...state,
+        updatedCartItem: action.payload,
+      };
+    case APPLAY_COUPON_CART:
+      return {
+        ...state,
+        applayCoupon: action.payload,
       };
     default:
       return state;

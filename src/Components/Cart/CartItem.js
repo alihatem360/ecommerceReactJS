@@ -6,6 +6,7 @@ import deleteicon from "../../images/delete.png";
 import { Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import DeleteAllUserCartHook from "../../customHook/cart/delete-all-user-cart-hook";
+import UpdateCartItemHook from "../../customHook/cart/update-cart-item-hook";
 const CartItem = ({ item }) => {
   const [
     clearAllUserCartHandler,
@@ -17,6 +18,10 @@ const CartItem = ({ item }) => {
     loading,
     setLoading,
   ] = DeleteAllUserCartHook(item._id);
+
+  const [quantity, handelOnChangeQuantity, updateCartItemHandler] =
+    UpdateCartItemHook(item);
+
   return (
     <Col xs="12" className="cart-item-body my-2 d-flex px-2">
       {
@@ -115,11 +120,19 @@ const CartItem = ({ item }) => {
             <div className="d-inline pt-2 d-flex">
               <div className="cat-text  d-inline">الكميه</div>
               <input
-                value={item.count}
+                value={quantity}
+                onChange={handelOnChangeQuantity}
                 className="mx-2 "
                 type="number"
-                style={{ width: "40px", height: "25px" }}
+                style={{ width: "46px", height: "37px" }}
               />
+              <Button
+                variant="dark"
+                className={"font bg-dark"}
+                onClick={updateCartItemHandler}
+              >
+                تاكيد
+              </Button>
             </div>
             <div className="d-inline pt-2 barnd-text">{item.price} ريال</div>
           </Col>

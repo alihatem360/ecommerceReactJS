@@ -68,3 +68,5 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const GET_ALL_USER_CART = "GET_ALL_USER_CART";
 export const CLEAR_All_USER_CART = "CLEAR_All_USER_CART";
 export const DELETE_CART_ITEM = "DELETE_CART_ITEM";
+export const UPDATE_CART_ITEM = "UPDATE_CART_ITEM";
+export const APPLAY_COUPON_CART = "APPLAY_COUPON_CART";
