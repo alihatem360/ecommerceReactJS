@@ -5,7 +5,9 @@ import CartItem from "../../Components/Cart/CartItem";
 import CartCheckout from "../../Components/Cart/CartCheckout";
 import GetAllUserCartHook from "../../customHook/cart/get-all-user-cart-hook";
 const CartPage = () => {
-  const [numOfCartItems, productItems] = GetAllUserCartHook();
+  const [numOfCartItems, productItems, couponNameResponse, totalAfterDiscount] =
+    GetAllUserCartHook();
+
   return (
     <Container className="" style={{ minHeight: "680px" }}>
       <Row>
@@ -22,7 +24,11 @@ const CartPage = () => {
           )}
         </Col>
         <Col xs="6" md="3">
-          <CartCheckout productItems={productItems} />
+          <CartCheckout
+            productItems={productItems}
+            couponNameResponse={couponNameResponse}
+            totalAfterDiscount={totalAfterDiscount}
+          />
         </Col>
       </Row>
     </Container>
