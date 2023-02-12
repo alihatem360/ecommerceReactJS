@@ -70,7 +70,21 @@ const ProductCard = ({ product, favItem }) => {
                 </div>
               </div>
               <div className="d-flex">
-                <div className="card-price">{product.price}</div>
+                <div className="card-price">
+                  {product.priceAfterDiscount ? (
+                    <div>
+                      <span className="mx-1">{product.priceAfterDiscount}</span>
+
+                      <span
+                        style={{ textDecoration: "line-through", color: "red" }}
+                      >
+                        {product.price}
+                      </span>
+                    </div>
+                  ) : (
+                    product.price
+                  )}
+                </div>
                 <div className="card-currency mx-1">جنيه</div>
               </div>
             </div>

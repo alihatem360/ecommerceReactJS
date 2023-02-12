@@ -76,13 +76,23 @@ const NavBarLogin = () => {
               {user != null ? (
                 <NavDropdown title={user.name} id="basic-nav-dropdown">
                   {user.role === "admin" ? (
-                    <NavDropdown.Item href="/admin/allproducts">
-                      لوحه التحكم
+                    <NavDropdown.Item>
+                      <Link
+                        to="/admin/allproducts"
+                        style={{ textDecoration: "none" }}
+                      >
+                        لوحه التحكم
+                      </Link>
                     </NavDropdown.Item>
                   ) : null}
                   {user.role === "user" ? (
-                    <NavDropdown.Item href="/user/user-profile">
-                      ملف شخصي
+                    <NavDropdown.Item>
+                      <Link
+                        to="/user/user-profile"
+                        style={{ textDecoration: "none", color: "black" }}
+                      >
+                        ملف شخصي
+                      </Link>
                     </NavDropdown.Item>
                   ) : null}
                   <NavDropdown.Item href="#action/3.2">طلباتي</NavDropdown.Item>

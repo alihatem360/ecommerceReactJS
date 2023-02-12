@@ -7,7 +7,6 @@ import ViewProductDetailsHook from "../../customHook/product/view-produc-details
 
 const ProductDetails = () => {
   // id from url params to get product details
-
   return (
     <Container>
       <Row className="py-3">

@@ -74,8 +74,24 @@ const ProductsText = () => {
       <Row className="mt-4">
         <Col md="12">
           <div className="product-price d-inline px-3 py-3 border">
-            {product.price ? product.price : "0"} ريال
+            {product.priceAfterDiscount ? (
+              <React.Fragment>
+                <div
+                  className="product-price d-inline mx-3"
+                  style={{ textDecoration: "line-through", color: "red" }}
+                >
+                  {product.price} جنيه
+                </div>
+
+                <div className="product-price d-inline">
+                  {product.priceAfterDiscount} جنيه
+                </div>
+              </React.Fragment>
+            ) : (
+              <div className="product-price d-inline">{product.price} جنيه</div>
+            )}
           </div>
+
           <div
             className="product-cart-add px-3 py-3 d-inline mx-3"
             onClick={addToCartHandler}

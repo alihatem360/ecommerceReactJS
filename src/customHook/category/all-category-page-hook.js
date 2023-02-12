@@ -11,7 +11,10 @@ const AllCategoryPageHook = () => {
   const dispatch = useDispatch();
   // when app start get all category
   useEffect(() => {
-    dispatch(getAllCategory(limitPage));
+    const getAllCategory = async () => {
+      await dispatch(getAllCategory(limitPage));
+    };
+    getAllCategory();
   }, []);
   //  get all category from redux and store it in category const
   const category = useSelector((state) => state.categoryReducer.categories);
@@ -19,15 +22,18 @@ const AllCategoryPageHook = () => {
 
   // get number of pages from redux and store it in pageNumbers const
   let pageNumbers = 0;
-  if (category.paginationResult) {
-    pageNumbers = category.paginationResult.numberOfPages;
+  try {
+    if (category.paginationResult) {
+      pageNumbers = category.paginationResult.numberOfPages;
+    }
+  } catch (e) {
+    console.log(e);
   }
 
   // set page number when user click on pagination
 
   const setPageNumber = (pageNumber) => {
     dispatch(getAllCategoryPage(pageNumber, limitPage));
-    console.log(pageNumber);
   };
 
   return [category, loading, pageNumbers, setPageNumber];

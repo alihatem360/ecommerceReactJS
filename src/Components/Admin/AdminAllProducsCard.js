@@ -95,7 +95,29 @@ const AdminAllProducsCard = ({ product }) => {
                 <div className="d-flex">
                   <div className="card-currency mx-1">جنيه</div>
                   <div className="card-price">
-                    {product.price ? product.price : "0"}
+                    {product.priceAfterDiscount ? (
+                      <div className="d-flex">
+                        <div
+                          className="card-price-discount"
+                          style={{
+                            textDecoration: "line-through",
+                            color: "#BDBDBD",
+                          }}
+                        >
+                          {product.price ? product.price : "0"}
+                        </div>
+                        <div className="card-price-after-discount">
+                          ...
+                          {product.priceAfterDiscount ? (
+                            product.priceAfterDiscount
+                          ) : (
+                            <div>0</div>
+                          )}
+                        </div>
+                      </div>
+                    ) : (
+                      <div>{product.price ? product.price : "0"}</div>
+                    )}
                   </div>
                 </div>
               </div>

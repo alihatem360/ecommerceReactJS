@@ -20,7 +20,7 @@ const BrandFeatured = ({ title, btntitle, pathText }) => {
           {loading === false ? (
             brands.data ? (
               brands.data.map((item, index) => (
-                <CategoryCard key={index} img={item.image} />
+                <BrandCard key={index} img={item.image} itemID={item._id} />
               ))
             ) : (
               <h1>
@@ -28,11 +28,9 @@ const BrandFeatured = ({ title, btntitle, pathText }) => {
               </h1>
             )
           ) : (
-            <>
-              <Col className="text-center">
-                <Spinner animation="border" variant="primary" />
-              </Col>
-            </>
+            <Col className="text-center">
+              <Spinner animation="border" variant="primary" />
+            </Col>
           )}
         </Row>
       </Container>
