@@ -10,7 +10,7 @@ const HomeCategory = () => {
   return (
     <Container>
       <SubTitle title=" التصنيفات" btntitle="المزيد" pathText="/allcategory" />
-      <Row className="my-2 d-flex  justify-content-between">
+      <Row className="my-5 d-flex  justify-content-between">
         {loading === false ? (
           category.data ? (
             category.data
@@ -19,6 +19,7 @@ const HomeCategory = () => {
                 <CategoryCard
                   key={index}
                   img={item.image}
+                  itemID={item._id}
                   background={colors[index]}
                   title={item.name}
                 />
@@ -29,11 +30,9 @@ const HomeCategory = () => {
             </h1>
           )
         ) : (
-          <>
-            <Col className="text-center">
-              <Spinner animation="border" variant="primary" />
-            </Col>
-          </>
+          <Col className="text-center">
+            <Spinner animation="border" variant="primary" />
+          </Col>
         )}
       </Row>
     </Container>

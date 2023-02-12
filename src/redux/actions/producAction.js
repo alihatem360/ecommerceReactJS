@@ -6,6 +6,8 @@ import {
   GET_RELATED_PRODUCT,
   DELETE_PRODUCT,
   UPDATE_PRODUCT,
+  GET_ALL_PRODUCTBY_CATEGORY,
+  GET_ALL_PRODUCTBY_BRAND,
 } from "../types/categorytypes";
 import { useInsertDataWithImage } from "../../hook/useInsertData";
 import { useGetData } from "../../hook/useGetData";
@@ -107,3 +109,37 @@ export const getAllProductSearch = (query) => async (dispatch) => {
     dispatch({ type: GET_ERROR, payload: "Something went wrong" + error });
   }
 };
+
+//  ==================  get all products by category ==================
+
+export const getAllProductByCategory =
+  (limit, page, categoryId) => async (dispatch) => {
+    try {
+      const respons = await useGetData(
+        `/api/v1/products?limit=${limit}&page=${page}&category=${categoryId}`
+      );
+      dispatch({ type: GET_ALL_PRODUCTBY_CATEGORY, payload: respons });
+    } catch (error) {
+      dispatch({
+        type: GET_ALL_PRODUCTBY_CATEGORY,
+        payload: error,
+      });
+    }
+  };
+
+//  ==================  get all products by brand ==================
+
+export const getAllProductByBrand =
+  (limit, page, brandId) => async (dispatch) => {
+    try {
+      const respons = await useGetData(
+        `/api/v1/products?limit=${limit}&page=${page}&brand=${brandId}`
+      );
+      dispatch({ type: GET_ALL_PRODUCTBY_BRAND, payload: respons });
+    } catch (error) {
+      dispatch({
+        type: GET_ALL_PRODUCTBY_BRAND,
+        payload: error,
+      });
+    }
+  };

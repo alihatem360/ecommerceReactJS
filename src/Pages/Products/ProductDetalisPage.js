@@ -5,6 +5,7 @@ import ProductDetails from "../../Components/Products/ProductDetails";
 import CategorysHeader from "../../Components/Category/CategorysHeader";
 import RateContainer from "../../Components/Rate/RateContainer";
 import ViewProductDetailsHook from "../../customHook/product/view-produc-details-hook";
+
 const ProductDetalisPage = () => {
   const [product, images, category, brand, relatedProduct] =
     ViewProductDetailsHook();

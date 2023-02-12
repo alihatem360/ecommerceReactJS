@@ -22,7 +22,8 @@ export const GET_PRODUCT_DETAILS = "GET_PRODUCT_DETAILS";
 export const GET_RELATED_PRODUCT = "GET_RELATED_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
-
+export const GET_ALL_PRODUCTBY_CATEGORY = "GET_ALL_PRODUCTBY_CATEGORY";
+export const GET_ALL_PRODUCTBY_BRAND = "GET_ALL_PRODUCTBY_BRAND";
 // ==================  auth types ==================
 export const CREATE_USER = "CREATE_USER";
 export const LOGIN_USER = "LOGIN_USER";

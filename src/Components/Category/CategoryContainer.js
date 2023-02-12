@@ -26,6 +26,7 @@ const CategoryContainer = ({ data, loading }) => {
                   key={index}
                   img={item.image}
                   background={colors[index]}
+                  itemID={item._id}
                 />
               ))
             ) : (
