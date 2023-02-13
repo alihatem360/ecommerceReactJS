@@ -101,7 +101,7 @@ const CartItem = ({ item }) => {
         <Row>
           <Col sm="12" className="mt-1 d-flex">
             {item.color !== "yello" && (
-              <>
+              <React.Fragment>
                 <span className="cat-text">اللون :</span>
 
                 <div
@@ -110,7 +110,7 @@ const CartItem = ({ item }) => {
                   } `}
                   style={{ backgroundColor: item.color }}
                 ></div>
-              </>
+              </React.Fragment>
             )}
           </Col>
         </Row>

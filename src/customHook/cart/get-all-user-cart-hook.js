@@ -10,6 +10,7 @@ const GetAllUserCartHook = () => {
 
   const [couponNameResponse, setCouponNameResponse] = useState("");
   const [totalAfterDiscount, setTotalAfterDiscount] = useState(0);
+  const [cartID, setCartID] = useState("");
 
   //   handel add to cart
   useEffect(() => {
@@ -35,6 +36,7 @@ const GetAllUserCartHook = () => {
           console.log("تم جلب السلة بنجاح");
           setNumOfCartItems(userCart.data.numOfCartItems);
           setProductItems(userCart.data.data);
+          setCartID(userCart.data.data._id);
           if (userCart.data.data.coupon) {
             setCouponNameResponse(userCart.data.data.coupon);
             setTotalAfterDiscount(userCart.data.data.totalAfterDiscount);
@@ -47,6 +49,12 @@ const GetAllUserCartHook = () => {
     }
   }, [userCart, loading]);
 
-  return [numOfCartItems, productItems, couponNameResponse, totalAfterDiscount];
+  return [
+    numOfCartItems,
+    productItems,
+    couponNameResponse,
+    totalAfterDiscount,
+    cartID,
+  ];
 };
 export default GetAllUserCartHook;

@@ -19,7 +19,7 @@ export const createProduct = (formData) => async (dispatch) => {
     const respons = await useInsertDataWithImage("/api/v1/products", formData);
     dispatch({ type: GEARTE_PRODUCT, payload: respons });
   } catch (error) {
-    dispatch({ type: GET_ERROR, payload: "Something went wrong" + error });
+    dispatch({ type: GEARTE_PRODUCT, payload: error });
   }
 };
 // ==================  get all product ==================

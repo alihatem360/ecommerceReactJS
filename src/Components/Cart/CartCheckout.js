@@ -3,12 +3,13 @@ import { Row, Col, InputGroup, FormControl } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import DeleteAllUserCartHook from "../../customHook/cart/delete-all-user-cart-hook";
 import ApplayCouponCartHook from "../../customHook/cart/applay-coupon-cart-hook";
-
+import { useNavigate } from "react-router-dom";
 const CartCheckout = ({
   productItems,
   totalAfterDiscount,
   couponNameResponse,
 }) => {
+  const navigate = useNavigate();
   const [clearAllUserCartHandler] = DeleteAllUserCartHook();
   const [applayCouponCartHandler, coupon, handelOnChangeCoupon] =
     ApplayCouponCartHook();
@@ -18,6 +19,17 @@ const CartCheckout = ({
       handelOnChangeCoupon(couponNameResponse);
     }
   }, [couponNameResponse]);
+
+  const handelCheckout = () => {
+    if (productItems.totalCartPrice === 0) {
+      alert("عربة التسوق فارغة");
+      navigate("/");
+    }
+
+    if (productItems.totalCartPrice >= 1) {
+      navigate("/order/paymethoud");
+    }
+  };
 
   return (
     <Row className="my-1 d-flex justify-content-center cart-checkout pt-3">
@@ -44,13 +56,15 @@ const CartCheckout = ({
                 productItems.totalCartPrice ? productItems.totalCartPrice : 0
               }  `}
         </div>
-        <Link
-          to="/order/paymethoud"
-          style={{ textDecoration: "none" }}
-          className="product-cart-add  d-inline "
+
+        <button
+          className="product-cart-add w-100 px-2"
+          onClick={handelCheckout}
         >
-          <button className="product-cart-add w-100 px-2"> اتمام الشراء</button>
-        </Link>
+          {" "}
+          اتمام الشراء
+        </button>
+
         <button
           className="product-cart-add w-100 px-2 mt-2 bg-danger"
           onClick={clearAllUserCartHandler}

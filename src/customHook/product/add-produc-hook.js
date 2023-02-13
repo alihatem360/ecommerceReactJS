@@ -132,6 +132,10 @@ const AddProducHook = () => {
     (state) => state.productReducer.product.status
   );
 
+  if (productStatus) {
+    console.log(productStatus, "productStatus");
+  }
+
   useEffect(() => {
     if (!loading) {
       setProducName("");
