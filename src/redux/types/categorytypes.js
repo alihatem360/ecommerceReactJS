@@ -71,3 +71,11 @@ export const CLEAR_All_USER_CART = "CLEAR_All_USER_CART";
 export const DELETE_CART_ITEM = "DELETE_CART_ITEM";
 export const UPDATE_CART_ITEM = "UPDATE_CART_ITEM";
 export const APPLAY_COUPON_CART = "APPLAY_COUPON_CART";
+
+// ==================  checkout types ==================
+
+export const CREATE_CASH_ORDER = "CREATE_CASH_ORDER";
+
+// ==================  order types ==================
+
+export const GET_ALL_USER_ORDER = "GET_ALL_USER_ORDER";
