@@ -7,7 +7,7 @@ import GetAllAddressHook from "../../customHook/user/get-all-address-hook";
 import OrderPayCashHook from "../../customHook/checkout/order-pay-cash-hook";
 const ChoosePayMethoud = () => {
   const [address, loading] = GetAllAddressHook();
-  const [handelChangeAddress] = OrderPayCashHook();
+  const [handelChangeAddress, handelCreateOrderCash] = OrderPayCashHook();
   return (
     <div>
       <div className="admin-content-text pt-5">اختر طريقة الدفع</div>
@@ -81,7 +81,10 @@ const ChoosePayMethoud = () => {
       <Row>
         <Col xs="12" className="d-flex justify-content-end">
           <div className="product-price d-inline   border">34000 جنية</div>
-          <div className="product-cart-add px-3 pt-2 d-inline me-2">
+          <div
+            className="product-cart-add px-3 pt-2 d-inline me-2"
+            onClick={handelCreateOrderCash}
+          >
             {" "}
             اتمام الشراء
           </div>
