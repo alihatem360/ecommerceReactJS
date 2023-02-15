@@ -3,9 +3,6 @@ import { Col, Row } from "react-bootstrap";
 import mobile from "../../images/mobile.png";
 import { Link } from "react-router-dom";
 const UserAllOrderCard = ({ item }) => {
-  if (item) {
-    console.log(item, "item");
-  }
   return (
     <div>
       <Row className="d-flex mb-2">
@@ -39,10 +36,11 @@ const UserAllOrderCard = ({ item }) => {
             {item && item.product.title}
           </div>
           <div className="d-inline pt-2 cat-rate me-2">
-            {" "}
-            {item && item.product.ratingsQuantity}
+            {item.product.ratingsAverage ? item.product.ratingsAverage : 0}
           </div>
-          <div className="rate-count d-inline p-1 pt-2">( تقييم)</div>
+          <div className="rate-count d-inline p-1 pt-2">
+            ({`${item.product.ratingsQuantity || 0} تقييم`})
+          </div>
           <div className="mt-3 d-flex justify-content-start">
             <div className="cat-text  d-inline">الكميه</div>
             <input

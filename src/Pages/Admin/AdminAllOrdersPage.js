@@ -4,7 +4,10 @@ import { Container } from "react-bootstrap";
 import AdminSideBar from "../../Components/Admin/AdminSideBar";
 import AdminAllOrder from "../../Components/Admin/AdminAllOrder";
 import PaginationCompontent from "../../Components/Utility/Pagination";
+import UserGetAllOrderHook from "../../customHook/user/user-get-all-order-hook";
 const AdminAllOrdersPage = () => {
+  const [userName, order, paginationResult, results, handelPaginate] =
+    UserGetAllOrderHook();
   return (
     <Container>
       <Row className="py-3">
@@ -13,7 +16,12 @@ const AdminAllOrdersPage = () => {
         </Col>
         <Col sm="9" xs="10" md="10">
           <AdminAllOrder />
-          <PaginationCompontent />
+          {paginationResult.numberOfPages > 1 && (
+            <PaginationCompontent
+              paginationPageNumber={paginationResult.numberOfPages}
+              onPress={handelPaginate}
+            />
+          )}
         </Col>
       </Row>
     </Container>

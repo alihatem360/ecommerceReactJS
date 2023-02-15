@@ -11,7 +11,7 @@ const UserAllOrdersPage = () => {
           <UserSideBar />
         </Col>
         <Col sm="9" xs="10" md="10">
-          <UserAllOrders/>
+          <UserAllOrders />
         </Col>
       </Row>
     </Container>

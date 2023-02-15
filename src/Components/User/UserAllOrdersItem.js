@@ -7,6 +7,11 @@ const UserAllOrdersItem = ({ orderItem }) => {
     <div className="user-order my-2 py-2">
       <Row>
         <div className="py-2 order-title">طلب رقم # {orderItem.id}</div>
+        <div className="py-2 order-title">
+          {" "}
+          ت بتاريخ{" "}
+          {orderItem.createdAt ? orderItem.createdAt.split("T")[0] : ""}
+        </div>
       </Row>
       {orderItem.cartItems &&
         orderItem.cartItems.map((item, index) => (
@@ -17,19 +22,19 @@ const UserAllOrdersItem = ({ orderItem }) => {
           <div className="d-inline">
             <div className="d-inline">التوصيل</div>
             <div className="d-inline mx-2 stat">
-              {orderItem.isDelivered === false ? "لم يتم " : "تم "}
+              {orderItem.isDelivered === false ? "لم يتم ❌" : "تم ✅"}
             </div>
           </div>
           <div className="d-inline ">
             <div className="d-inline">الدفع</div>
-            <div className="d-inline mx-2 stat">
-              {orderItem.isDelivered === false ? "لم يتم " : "تم "}
+            <div className="d-inline mx-2 stat font-weight-bold font-size-20">
+              {orderItem.isPaid === false ? "لم يتم ❌" : "تم ✅"}
             </div>
           </div>
           <div className="d-inline ">
             <div className="d-inline">طريقة الدفع</div>
             <div className="d-inline mx-2 stat">
-              {orderItem.paymentMethodType === "cash" ? "كاش" : "بطاقة"}
+              {orderItem.paymentMethodType === "cash" ? "كاش 💰" : "بطاقة 💳"}
             </div>
           </div>
         </Col>

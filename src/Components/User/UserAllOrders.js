@@ -2,17 +2,11 @@ import React from "react";
 import { Row } from "react-bootstrap";
 import UserAllOrdersItem from "./UserAllOrdersItem";
 import UserGetAllOrderHook from "../../customHook/user/user-get-all-order-hook";
+import PaginationCompontent from "../../Components/Utility/Pagination";
 const UserAllOrders = () => {
-  const [userName, order, paginationResult, results] = UserGetAllOrderHook();
-  if (order) {
-    console.log(order, "order");
-  }
-  if (paginationResult) {
-    console.log(paginationResult, "paginationResult");
-  }
-  if (results) {
-    console.log(results, "results");
-  }
+  const [userName, order, paginationResult, results, handelPaginate] =
+    UserGetAllOrderHook();
+
   return (
     <div>
       <Row className="justify-content-between ">
@@ -26,6 +20,15 @@ const UserAllOrders = () => {
           ))
         ) : (
           <div className="admin-content-text">لا يوجد طلبات</div>
+        )}
+      </Row>
+
+      <Row className="justify-content-center">
+        {paginationResult.numberOfPages > 1 && (
+          <PaginationCompontent
+            paginationPageNumber={paginationResult.numberOfPages}
+            onPress={handelPaginate}
+          />
         )}
       </Row>
     </div>
