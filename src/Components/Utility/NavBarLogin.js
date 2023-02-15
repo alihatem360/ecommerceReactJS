@@ -86,16 +86,23 @@ const NavBarLogin = () => {
                     </NavDropdown.Item>
                   ) : null}
                   {user.role === "user" ? (
-                    <NavDropdown.Item>
-                      <Link
-                        to="/user/user-profile"
-                        style={{ textDecoration: "none", color: "black" }}
-                      >
-                        ملف شخصي
-                      </Link>
-                    </NavDropdown.Item>
+                    <React.Fragment>
+                      <NavDropdown.Item href="/user/user-profile">
+                        الصفحه الشخصيه 😎
+                      </NavDropdown.Item>
+
+                      <NavDropdown.Item href="/user/allOrders">
+                        طلباتي ⚡
+                      </NavDropdown.Item>
+                      <NavDropdown.Item href="/user/favorite">
+                        المفضله ❤
+                      </NavDropdown.Item>
+                      <NavDropdown.Item href="/user/address">
+                        العناوين المحفوظه
+                      </NavDropdown.Item>
+                    </React.Fragment>
                   ) : null}
-                  <NavDropdown.Item href="#action/3.2">طلباتي</NavDropdown.Item>
+
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action/3.3" onClick={handelLOgOut}>
                     تسجيل الخروج

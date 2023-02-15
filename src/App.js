@@ -95,7 +95,7 @@ function App() {
               element={<AdminAddProductsPage />}
             />
             <Route
-              path="/admin/orders/23"
+              path="/admin/orders/:id"
               element={<AdminOrderDetalisPage />}
             />
             <Route

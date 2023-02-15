@@ -79,3 +79,6 @@ export const CREATE_CASH_ORDER = "CREATE_CASH_ORDER";
 // ==================  order types ==================
 
 export const GET_ALL_USER_ORDER = "GET_ALL_USER_ORDER";
+export const GET_ONE_ORDER_DETAILS = "GET_ONE_ORDER_DETAILS";
+export const CHANGE_ORDER_PAAID = "CHANGE_ORDER_PAAID";
+export const CHANGE_ORDER_DELIVERED = "CHANGE_ORDER_DELIVERED";
