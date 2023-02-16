@@ -6,10 +6,10 @@ import { createCashOrder } from "../../redux/actions/checkoutAction";
 const OrderPayCashHook = () => {
   const [, , , , cartID] = GetAllUserCartHook();
   const dispatch = useDispatch();
-  const [address, setAddress] = useState([]);
+  const [selectedAddress, setSelectedAddress] = useState();
   const [loading, setLoading] = useState(false);
   const handelChangeAddress = (e) => {
-    setAddress([]);
+    setSelectedAddress([]);
     if (e.target.value !== "0") {
       getAddress(e.target.value);
     }
@@ -33,7 +33,7 @@ const OrderPayCashHook = () => {
   useEffect(() => {
     if (addressOne.data) {
       if (addressOne.data.status === "success") {
-        setAddress(addressOne.data.data);
+        setSelectedAddress(addressOne.data.data);
       }
     }
   }, [addressOne.data]);
@@ -47,12 +47,15 @@ const OrderPayCashHook = () => {
     ) {
       return alert("السلة فارغة");
     }
+    if (selectedAddress === null || selectedAddress === undefined) {
+      return alert("الرجاء اختيار العنوان");
+    }
     setLoading(true);
     await dispatch(
       createCashOrder(cartID, {
         shippingAddress: {
-          details: address.details,
-          phone: address.phone,
+          details: selectedAddress.details,
+          phone: selectedAddress.phone,
           city: "Cairo",
           postalCode: "41516",
         },
@@ -82,7 +85,7 @@ const OrderPayCashHook = () => {
       }
     }
   }, [createCashOrderResponse, loading]);
-  return [handelChangeAddress, handelCreateOrderCash];
+  return [handelChangeAddress, handelCreateOrderCash, selectedAddress];
 };
 
 export default OrderPayCashHook;

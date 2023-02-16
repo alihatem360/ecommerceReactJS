@@ -5,9 +5,26 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import GetAllAddressHook from "../../customHook/user/get-all-address-hook";
 import OrderPayCashHook from "../../customHook/checkout/order-pay-cash-hook";
+import OrderPayCardHook from "../../customHook/checkout/order-pay-card-hook";
 const ChoosePayMethoud = () => {
   const [address, loading] = GetAllAddressHook();
-  const [handelChangeAddress, handelCreateOrderCash] = OrderPayCashHook();
+  const [handelChangeAddress, handelCreateOrderCash, selectedAddress] =
+    OrderPayCashHook();
+  const [paymentType, setPaymentType] = React.useState("");
+  const [handelCreateOrderCARD] = OrderPayCardHook(selectedAddress);
+  const handelPaymentMetode = (e) => {
+    setPaymentType(e.target.value);
+  };
+
+  const paymentMetode = () => {
+    if (paymentType === "CASH") {
+      handelCreateOrderCash();
+    } else if (paymentType === "CARD") {
+      handelCreateOrderCARD();
+    } else {
+      alert("اختر طريقة الدفع");
+    }
+  };
   return (
     <div>
       <div className="admin-content-text pt-5">اختر طريقة الدفع</div>
@@ -15,10 +32,11 @@ const ChoosePayMethoud = () => {
         <Row className="d-flex justify-content-between ">
           <Col xs="12" className="my-4">
             <input
+              onChange={handelPaymentMetode}
               name="group"
               id="group1"
               type="radio"
-              value="الدفع عن طريق الفيزا"
+              value="CARD"
               className="mt-2"
             />
             <label
@@ -36,10 +54,11 @@ const ChoosePayMethoud = () => {
         <Row className="mt-2">
           <Col xs="12" className="d-flex">
             <input
+              onChange={handelPaymentMetode}
               name="group"
               id="group2"
               type="radio"
-              value="الدفع عند الاستلام"
+              value="CASH"
               className=""
             />
             <label
@@ -83,7 +102,7 @@ const ChoosePayMethoud = () => {
           <div className="product-price d-inline   border">34000 جنية</div>
           <div
             className="product-cart-add px-3 pt-2 d-inline me-2"
-            onClick={handelCreateOrderCash}
+            onClick={paymentMetode}
           >
             {" "}
             اتمام الشراء

@@ -75,6 +75,7 @@ export const APPLAY_COUPON_CART = "APPLAY_COUPON_CART";
 // ==================  checkout types ==================
 
 export const CREATE_CASH_ORDER = "CREATE_CASH_ORDER";
+export const CREATE_CARD_ORDER = "CREATE_CARD_ORDER";
 
 // ==================  order types ==================
 
