@@ -11,6 +11,19 @@ import ViewProductDetailsHook from "../../customHook/product/view-produc-details
 const ProductGallery = () => {
   const { id } = useParams();
   const [product, images, category] = ViewProductDetailsHook(id);
+  const baseURL = "https://ecommerce-api-p9x7.onrender.com";
+
+  images &&
+    images.forEach((element) => {
+      // const originalPath = element.original;
+      if (element.original.startsWith("undefined")) {
+        const newPath = baseURL + element.original.slice("undefined".length);
+        element.original = newPath;
+      } else {
+        const newPath = baseURL + element.original;
+        element.original = newPath;
+      }
+    });
 
   return (
     <div

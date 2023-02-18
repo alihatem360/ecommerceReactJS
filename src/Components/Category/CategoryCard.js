@@ -3,6 +3,8 @@ import { Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const CategoryCard = ({ img, background, title, itemID }) => {
+  const baseURL = "https://ecommerce-api-p9x7.onrender.com";
+  console.log(img, "img");
   return (
     <Col
       xs="6"
@@ -20,7 +22,15 @@ const CategoryCard = ({ img, background, title, itemID }) => {
             to={`/products/allCategory/${itemID}`}
             style={{ textDecoration: "none" }}
           >
-            <img alt="zcv" src={img} className="categoty-card-img" />
+            <img
+              alt="zcv"
+              src={
+                img.startsWith("undefined")
+                  ? baseURL + img.slice("undefined".length)
+                  : img
+              }
+              className="categoty-card-img"
+            />
             <p className="categoty-card-text my-2">{title}</p>
           </Link>
         </div>{" "}

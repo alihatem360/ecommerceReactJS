@@ -3,6 +3,8 @@ import { Col, Row } from "react-bootstrap";
 import mobile from "../../images/mobile.png";
 import { Link } from "react-router-dom";
 const UserAllOrderCard = ({ item }) => {
+  const baseURL = "https://ecommerce-api-p9x7.onrender.com";
+
   return (
     <div>
       <Row className="d-flex mb-2">
@@ -21,11 +23,8 @@ const UserAllOrderCard = ({ item }) => {
                 borderRadius: "10px",
               }}
               src={
-                item.product
-                  ? item.product.imageCover[0] !== "h"
-                    ? `http://127.0.0.1:8000/products/${item.product.imageCover}`
-                    : item.product.imageCover
-                  : mobile
+                item.product.imageCover &&
+                `${baseURL}/products/${item.product.imageCover}`
               }
               alt="product"
             />

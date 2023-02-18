@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Col, Row, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import prod1 from "../../images/prod1.png";
-
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { deleteProduct } from "../../redux/actions/producAction";
 import { useDispatch } from "react-redux";
+const baseURL = "https://ecommerce-api-p9x7.onrender.com";
 
 const AdminAllProducsCard = ({ product }) => {
   //  show modal
@@ -79,7 +79,11 @@ const AdminAllProducsCard = ({ product }) => {
         >
           <Card.Img
             style={{ height: "228px", width: "100%" }}
-            src={product.imageCover ? product.imageCover : prod1}
+            src={
+              product.imageCover.startsWith("undefined")
+                ? baseURL + product.imageCover.slice("undefined".length)
+                : product.imageCover
+            }
           />
           <Card.Body>
             <Card.Title>

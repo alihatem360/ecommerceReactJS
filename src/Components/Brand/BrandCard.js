@@ -2,6 +2,8 @@ import React from "react";
 import { Button, Card, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 const BrandCard = ({ img, itemID }) => {
+  const baseURL = "https://ecommerce-api-p9x7.onrender.com";
+
   return (
     <Col
       xs="6"
@@ -25,7 +27,11 @@ const BrandCard = ({ img, itemID }) => {
         >
           <Card.Img
             style={{ width: "100%", height: "100%", borderRadius: "16px" }}
-            src={img}
+            src={
+              img.startsWith("undefined")
+                ? baseURL + img.slice("undefined".length)
+                : img
+            }
           />
         </Link>
       </Card>

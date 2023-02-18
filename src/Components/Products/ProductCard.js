@@ -9,6 +9,8 @@ import ProductCardHook from "../../customHook/product/product-card-hook";
 const ProductCard = ({ product, favItem }) => {
   // get favorite items from product-card-hook
   const [favCliched, handelAddToWishList] = ProductCardHook(product, favItem);
+  const baseURL = "https://ecommerce-api-p9x7.onrender.com";
+
   return (
     <Col xs="6" sm="6" md="4" lg="3" className="d-flex">
       <Card
@@ -32,9 +34,9 @@ const ProductCard = ({ product, favItem }) => {
           <Card.Img
             style={{ height: "228px", width: "100%" }}
             src={
-              product.imageCover[0] !== "h"
-                ? `http://127.0.0.1:8000/products/${product.imageCover}`
-                : product.imageCover
+              product.imageCover.startsWith("undefined")
+                ? baseURL + product.imageCover.slice("undefined".length)
+                : baseURL + "/products/" + product.imageCover
             }
           />
         </Link>

@@ -60,12 +60,6 @@ const LoginPage = () => {
               </span>
             </Link>
           </label>
-          <Link to="/admin/allproducts" style={{ textDecoration: "none" }}>
-            <label className="mx-auto text-center">الدخول بحساب الادمن</label>
-          </Link>
-          <Link to="/user/allOrders" style={{ textDecoration: "none" }}>
-            <label className="mx-auto text-center">الدخول بحساب المستخدم</label>
-          </Link>
         </Col>
       </Row>
     </Container>

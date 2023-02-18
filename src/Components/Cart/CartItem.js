@@ -21,6 +21,7 @@ const CartItem = ({ item }) => {
 
   const [quantity, handelOnChangeQuantity, updateCartItemHandler] =
     UpdateCartItemHook(item);
+  const baseURL = "https://ecommerce-api-p9x7.onrender.com";
 
   return (
     <Col xs="12" className="cart-item-body my-2 d-flex px-2">
@@ -55,7 +56,7 @@ const CartItem = ({ item }) => {
         className="cart-item-coverImg"
         width="160px"
         height="100%"
-        src={`http://127.0.0.1:8000/products/${item.product.imageCover}`}
+        src={`${baseURL}/products/${item.product.imageCover}`}
         alt=""
       />
 
