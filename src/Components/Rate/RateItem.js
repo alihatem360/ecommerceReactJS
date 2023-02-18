@@ -65,11 +65,11 @@ const RateItem = ({ item }) => {
       <Modal show={show} onHide={handleClose}>
         <Modal.Header>
           <Modal.Title>
-            <div className="font">حذف المنتج</div>
+            <div className="font">حذف التقييم</div>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="font">هل انت متاكد من حذف المنتج ؟</div>
+          <div className="font">هل انت متاكد من حذف التقييم</div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="success" onClick={handleClose} className={"font"}>

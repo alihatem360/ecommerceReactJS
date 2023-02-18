@@ -15,7 +15,7 @@ const ProductCard = ({ product, favItem }) => {
         className="my-2"
         style={{
           width: "100%",
-          height: "345px",
+          height: "376px",
           borderRadius: "8px",
           border: "none",
           backgroundColor: "#FFFFFF",
@@ -51,7 +51,7 @@ const ProductCard = ({ product, favItem }) => {
             onClick={handelAddToWishList}
           />
         </div>
-        <Card.Body>
+        <Card.Body className="d-flex flex-column justify-content-between">
           <Card.Title>
             <div className="card-title">{product.title}</div>
           </Card.Title>
