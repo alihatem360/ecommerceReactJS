@@ -11,7 +11,6 @@ The Admin Dashboard allows the administrator to manage products, categories, and
 - ⚙️ [Installation](#installation)
 - 📖 [Usage](#usage)
 - 👥 [Contributing](#contributing)
-- 📝 [License](#license)
 
 ## Technologies Used
 
