@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 const CategoryCard = ({ img, background, title, itemID }) => {
   const baseURL = "https://ecommerce-api-p9x7.onrender.com";
-  console.log(img, "img");
   return (
     <Col
       xs="6"
