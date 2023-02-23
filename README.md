@@ -2,6 +2,8 @@
 
 This is an ecommerce website with an Admin Dashboard built with ReactJS, Redux, and Bootstrap. It allows users to browse and purchase products, as well as manage their account and view their order history. The website is responsive and can be viewed on desktop or mobile devices.
 
+[![Ecommerce Website Demo Video](./src/images/EcommerceWebsite.png)](https://youtu.be/GBpBnKl0Rr8)
+
 The Admin Dashboard allows the administrator to manage products, categories, and brands. Additionally, users can make orders by cash or by card.
 
 ## Table of Contents
